@@ -1,4 +1,4 @@
-package main.java.com.damianopetrungaro.app;
+package com.antondoddo.netflix;
 
 /**
  * Hello world!

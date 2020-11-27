@@ -1,4 +1,4 @@
-package test.java.com.damianopetrungaro.app;
+package com.antondoddo.netflix;
 
 import static org.junit.Assert.assertTrue;
 
