@@ -1,0 +1,18 @@
+package com.antondoddo.guardabili;
+
+public enum Genere {
+
+	COMICO,
+	COMMEDIA,
+	THRILLER,
+	POLIZIESCO,
+	FANTASY,
+	GUERRA,
+	DRAMMATICO,
+	HORROR,
+	AVVENTURA,
+	ACTION,
+	ROMANTICO,
+	DOCUMENTARIO;
+	
+}
