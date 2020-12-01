@@ -1,24 +1,14 @@
-package com.antondoddo.guardabili;
+package com.antondoddo.exception;
 
-public class NomeNonValidoException extends IllegalArgumentException {
-
+public class InvalidNameOrSurnameException extends IllegalArgumentException {
 	
 	private static final long serialVersionUID = 1L;
 	
-	
-	public NomeNonValidoException() {
-		
+	public InvalidNameOrSurnameException() {
 		super("NomeNonValidoException");
 	}
-
-
 	@Override
 	public String toString() {
 		return getMessage() + ": Il nome o il cognome non sono validi";
 	}
-
-
-	
-	
-
 }

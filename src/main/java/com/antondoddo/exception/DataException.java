@@ -1,21 +1,16 @@
-package com.antondoddo.guardabili;
+package com.antondoddo.exception;
 
 public class DataException extends IllegalArgumentException {
 
-	
 	private static final long serialVersionUID = 1L;
 	
 	public DataException() {
 		
 		super("DataException:");
 	}
-
 	@Override
 	public String toString() {
 		
 		return getMessage() + ": La data non è valida";
 	}
-	
-	
-
 }
