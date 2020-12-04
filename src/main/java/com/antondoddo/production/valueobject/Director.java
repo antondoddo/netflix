@@ -1,15 +1,15 @@
-package com.antondoddo.valueobjects;
+package com.antondoddo.production.valueobject;
 
-import com.antondoddo.exception.InvalidNameOrSurnameException;
+import com.antondoddo.production.valueobject.exception.IllegalNameOrSurnameException;
 
 public class Director {
 
 	private String name;
 	private String surname;
 
-	public Director(String name, String surname) throws InvalidNameOrSurnameException {
+	public Director(String name, String surname) throws IllegalNameOrSurnameException {
 		if (!(checkLength(name) && checkLength(surname))) {
-			throw new InvalidNameOrSurnameException();
+			throw new IllegalNameOrSurnameException("Director");
 		}
 		this.name = name;
 		this.surname = surname;
@@ -20,7 +20,7 @@ public class Director {
 	public String getSurname() {
 		return surname;
 	}
-	public boolean checkLength(String name) {
+	private boolean checkLength(String name) {
 
 		return name.length() > 2;
 	}

@@ -1,10 +1,10 @@
-package com.antondoddo.exception;
+package com.antondoddo.production.valueobject.exception;
 
-public class DataException extends IllegalArgumentException {
+public class IllegalYearOfPublicationException extends IllegalArgumentException {
 
 	private static final long serialVersionUID = 1L;
 	
-	public DataException() {
+	public IllegalYearOfPublicationException() {
 		
 		super("DataException:");
 	}

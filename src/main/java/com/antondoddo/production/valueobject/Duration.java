@@ -1,15 +1,15 @@
-package com.antondoddo.valueobjects;
+package com.antondoddo.production.valueobject;
 
 
-import com.antondoddo.exception.FilmDurationException;
+import com.antondoddo.production.valueobject.exception.IllegalDurationException;
 
 public class Duration {
 
 	private java.time.Duration filmDuration;
 
-	public Duration(java.time.Duration filmDuration) throws FilmDurationException {
+	public Duration(java.time.Duration filmDuration) throws IllegalDurationException {
 		if (!checkDuration(filmDuration)) {
-			throw new FilmDurationException();
+			throw new IllegalDurationException();
 		}
 
 		this.filmDuration = filmDuration;

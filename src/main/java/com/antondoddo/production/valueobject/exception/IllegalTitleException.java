@@ -1,4 +1,4 @@
-package com.antondoddo.exception;
+package com.antondoddo.production.valueobject.exception;
 
 public class IllegalTitleException extends IllegalArgumentException {
 

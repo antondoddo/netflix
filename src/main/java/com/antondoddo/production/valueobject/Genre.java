@@ -1,4 +1,4 @@
-package com.antondoddo.valueobjects;
+package com.antondoddo.production.valueobject;
 
 public enum Genre {
 

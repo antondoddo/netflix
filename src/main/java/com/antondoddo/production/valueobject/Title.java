@@ -1,6 +1,6 @@
-package com.antondoddo.valueobjects;
+package com.antondoddo.production.valueobject;
 
-import com.antondoddo.exception.IllegalTitleException;
+import com.antondoddo.production.valueobject.exception.IllegalTitleException;
 
 public class Title {
 

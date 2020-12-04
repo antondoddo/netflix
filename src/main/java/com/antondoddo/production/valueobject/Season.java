@@ -1,4 +1,4 @@
-package com.antondoddo.production;
+package com.antondoddo.production.valueobject;
 
 public interface Season {
 	

@@ -1,6 +1,6 @@
-package com.antondoddo.valueobjects;
+package com.antondoddo.production.valueobject;
 
-import com.antondoddo.exception.InvalidDescriptionException;
+import com.antondoddo.production.valueobject.exception.IllegalDescriptionException;
 
 public class Description {
 	
@@ -8,9 +8,9 @@ public class Description {
 	private int min= 10;
 	private int max = 200;
 	
-	public Description(String content) throws InvalidDescriptionException {
+	public Description(String content) throws IllegalDescriptionException {
 		if (!(content.length() > min && content.length() < max)) {
-			throw new InvalidDescriptionException();
+			throw new IllegalDescriptionException();
 		}
 		this.value = content;
 	}

@@ -3,14 +3,19 @@ package com.antondoddo.production;
 import java.util.ArrayList;
 import java.util.UUID;
 
-import com.antondoddo.valueobjects.Actor;
-import com.antondoddo.valueobjects.Description;
-import com.antondoddo.valueobjects.Director;
-import com.antondoddo.valueobjects.Duration;
-import com.antondoddo.valueobjects.Genre;
-import com.antondoddo.valueobjects.Title;
-import com.antondoddo.valueobjects.YearOfPublication;
-import com.antondoddo.valueobjects.AgeClassification;
+import com.antondoddo.production.valueobject.Actor;
+import com.antondoddo.production.valueobject.AgeClassification;
+import com.antondoddo.production.valueobject.Description;
+import com.antondoddo.production.valueobject.Director;
+import com.antondoddo.production.valueobject.Duration;
+import com.antondoddo.production.valueobject.Episode;
+import com.antondoddo.production.valueobject.Genre;
+import com.antondoddo.production.valueobject.NullEpisode;
+import com.antondoddo.production.valueobject.NullSeason;
+import com.antondoddo.production.valueobject.Season;
+import com.antondoddo.production.valueobject.Title;
+import com.antondoddo.production.valueobject.YearOfPublication;
+
 
 public final class Production {
     private final UUID id;

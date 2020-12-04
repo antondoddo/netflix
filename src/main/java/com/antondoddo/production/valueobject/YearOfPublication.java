@@ -1,8 +1,8 @@
-package com.antondoddo.valueobjects;
+package com.antondoddo.production.valueobject;
 
 import java.util.regex.Pattern;
 
-import com.antondoddo.exception.DataException;
+import com.antondoddo.production.valueobject.exception.IllegalYearOfPublicationException;
 
 public final class YearOfPublication {
 
@@ -12,11 +12,11 @@ public final class YearOfPublication {
 	public String getDataPubblicazione() {
 		return yearPublication;
 	}
-	public YearOfPublication(String yearPublication) throws DataException {
+	public YearOfPublication(String yearPublication) throws IllegalYearOfPublicationException {
 
 		if (!checkData(yearPublication)) {
 
-			throw new DataException();
+			throw new IllegalYearOfPublicationException();
 		}
 		this.yearPublication = yearPublication;
 	}

@@ -1,10 +1,10 @@
-package com.antondoddo.exception;
+package com.antondoddo.production.valueobject.exception;
 
-public class FilmDurationException extends IllegalArgumentException {
+public class IllegalDurationException extends IllegalArgumentException {
 	
 	private static final long serialVersionUID = 1L;
 
-	public FilmDurationException() {
+	public IllegalDurationException() {
 		super("FilmDurationException");
 	}
 	@Override

@@ -1,14 +1,14 @@
-package com.antondoddo.exception;
+package com.antondoddo.production.valueobject.exception;
 
-import com.antondoddo.valueobjects.Description;
+import com.antondoddo.production.valueobject.Description;
 
-public class InvalidDescriptionException extends IllegalArgumentException {
+public class IllegalDescriptionException extends IllegalArgumentException {
 	
 	private static final long serialVersionUID = 1L;
 	
 	Description description = new Description("");
 	
-	public InvalidDescriptionException() {
+	public IllegalDescriptionException() {
 		super("Descrizione non valida");
 	}
 	@Override
