@@ -1,49 +1,48 @@
 package com.antondoddo.production.valueobject;
 
-import org.junit.Test;
-
-import com.antondoddo.production.valueobject.exception.IllegalNameOrSurnameException;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+import com.antondoddo.production.valueobject.exception.IllegalNameOrSurnameException;
+import org.junit.Test;
+
 public class DirectorTest {
 
-	@Test
-	public void shouldThrowIllegalDirectorException() {
+  @Test
+  public void shouldThrowIllegalDirectorException() {
 
-		IllegalNameOrSurnameException expected = null;
+    IllegalNameOrSurnameException expected = null;
 
-		try {
-			Director director = new Director("", "");
+    try {
+      Director director = new Director("", "");
 
-		} catch (IllegalNameOrSurnameException e) {
+    } catch (IllegalNameOrSurnameException e) {
 
-			expected = e;
+      expected = e;
 
-		}
+    }
 
-		assertNotNull(expected);
+    assertNotNull(expected);
 
-		assertEquals(expected.toString(), "Director: Il nome o il cognome non sono validi");
-	}
+    assertEquals(expected.toString(), "Director: Il nome o il cognome non sono validi");
+  }
 
-	@Test
-	public void shouldReturnConstructorName() {
+  @Test
+  public void shouldReturnConstructorName() {
 
-		Director director = new Director("Antonio", "Farina");
+    Director director = new Director("Antonio", "Farina");
 
-		assertEquals("Antonio",director.getName());
+    assertEquals("Antonio", director.getName());
 
-	}
-	
-	@Test
-	public void shouldReturnConstructorSurname() {
+  }
 
-		Director director = new Director("Antonio", "Farina");
+  @Test
+  public void shouldReturnConstructorSurname() {
 
-		assertEquals("Farina",director.getSurname());
+    Director director = new Director("Antonio", "Farina");
 
-	}
+    assertEquals("Farina", director.getSurname());
+
+  }
 
 }
