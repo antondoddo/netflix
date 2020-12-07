@@ -2,7 +2,7 @@ package com.antondoddo.production.valueobject;
 
 import com.antondoddo.production.valueobject.exception.IllegalTitleException;
 
-public class Title {
+public final class Title {
 
   private final String value;
 
@@ -13,7 +13,7 @@ public class Title {
     this.value = title;
   }
 
-  public String getTitoloFilm() {
+  public String getTitle() {
     return value;
   }
 
@@ -25,7 +25,7 @@ public class Title {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Title annoPublicazione = (Title) o;
-    return this.value == annoPublicazione.value;
+    Title yearOfPublication = (Title) o;
+    return this.value == yearOfPublication.value;
   }
 }

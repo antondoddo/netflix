@@ -3,7 +3,7 @@ package com.antondoddo.production.valueobject;
 
 import com.antondoddo.production.valueobject.exception.IllegalDurationException;
 
-public class Duration {
+public final class Duration {
 
   private final java.time.Duration filmDuration;
 
@@ -15,7 +15,7 @@ public class Duration {
     this.filmDuration = filmDuration;
   }
 
-  public java.time.Duration getDurataFilm() {
+  public java.time.Duration getFilmDuration() {
     return filmDuration;
   }
 

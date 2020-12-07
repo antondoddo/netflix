@@ -22,7 +22,7 @@ public final class Production {
   private final Description description;
   private final Duration duration;
   private final YearOfPublication yearOfPublication;
-  private final Genre[] genres;
+  private final ArrayList<Genre> genres;
   private final ArrayList<Actor> cast;
   private final Director filmDirector;
   private final AgeClassification ageClassification;
@@ -35,7 +35,7 @@ public final class Production {
           Description description,
           Duration duration,
           YearOfPublication yearOfPublication,
-          Genre[] genres,
+          ArrayList<Genre> genres,
           ArrayList<Actor> cast,
           Director filmDirector,
           AgeClassification ageClassification,
@@ -61,7 +61,7 @@ public final class Production {
           Description description,
           Duration duration,
           YearOfPublication yearOfPublication,
-          Genre[] genres,
+          ArrayList<Genre> genres,
           ArrayList<Actor> cast,
           Director direction,
           AgeClassification ageClassification
@@ -87,7 +87,7 @@ public final class Production {
           Description description,
           Duration duration,
           YearOfPublication yearOfPublication,
-          Genre[] genres,
+          ArrayList<Genre> genres,
           ArrayList<Actor> cast,
           Director direction,
           AgeClassification ageClassification,
@@ -129,7 +129,7 @@ public final class Production {
     return yearOfPublication;
   }
 
-  public Genre[] getGenres() {
+  public ArrayList<Genre> getGenres() {
     return genres;
   }
 

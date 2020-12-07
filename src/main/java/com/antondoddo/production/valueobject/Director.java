@@ -2,7 +2,7 @@ package com.antondoddo.production.valueobject;
 
 import com.antondoddo.production.valueobject.exception.IllegalNameOrSurnameException;
 
-public class Director {
+public final class Director {
 
   private final String name;
   private final String surname;

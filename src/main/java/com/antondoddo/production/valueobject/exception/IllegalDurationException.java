@@ -1,6 +1,6 @@
 package com.antondoddo.production.valueobject.exception;
 
-public class IllegalDurationException extends IllegalArgumentException {
+public final class IllegalDurationException extends IllegalArgumentException {
 
   private static final long serialVersionUID = 1L;
 

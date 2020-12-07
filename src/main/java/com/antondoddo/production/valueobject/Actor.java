@@ -2,7 +2,7 @@ package com.antondoddo.production.valueobject;
 
 import com.antondoddo.production.valueobject.exception.IllegalNameOrSurnameException;
 
-public class Actor {
+public final class Actor {
 
   private final String name;
   private final String surname;
@@ -23,7 +23,7 @@ public class Actor {
     return surname;
   }
 
-  public boolean checkLength(String name) {
+  private boolean checkLength(String name) {
     return name.length() > 2;
   }
 

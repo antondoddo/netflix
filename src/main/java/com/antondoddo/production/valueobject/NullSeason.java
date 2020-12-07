@@ -1,6 +1,6 @@
 package com.antondoddo.production.valueobject;
 
-public class NullSeason implements Season {
+public final class NullSeason implements Season {
 
   @Override
   public int getValue() {

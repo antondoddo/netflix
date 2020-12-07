@@ -1,6 +1,6 @@
 package com.antondoddo.production.valueobject.exception;
 
-public class IllegalNameOrSurnameException extends IllegalArgumentException {
+public final class IllegalNameOrSurnameException extends IllegalArgumentException {
 
   private static final long serialVersionUID = 1L;
   private final String role;

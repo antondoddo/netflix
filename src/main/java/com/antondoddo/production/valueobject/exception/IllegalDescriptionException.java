@@ -2,7 +2,7 @@ package com.antondoddo.production.valueobject.exception;
 
 import com.antondoddo.production.valueobject.Description;
 
-public class IllegalDescriptionException extends IllegalArgumentException {
+public final class IllegalDescriptionException extends IllegalArgumentException {
 
   private static final long serialVersionUID = 1L;
 

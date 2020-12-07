@@ -2,28 +2,28 @@ package com.antondoddo.production.valueobject;
 
 import com.antondoddo.production.valueobject.exception.IllegalDescriptionException;
 
-public class Description {
+public final class Description {
 
-  private String value;
   public static final int min = 10;
   public static final int max = 200;
+  private final String value;
 
-  public Description(String content) throws IllegalDescriptionException {
-    if (!(content.length() > min && content.length() < max)) {
+  public Description(String value) throws IllegalDescriptionException {
+    if (!(value.length() > min && value.length() < max)) {
       throw new IllegalDescriptionException();
     }
-    this.value = content;
+    this.value = value;
   }
 
   public String getValue() {
     return value;
   }
 
-  public int getMin() {
+  private int getMin() {
     return min;
   }
 
-  public int getMax() {
+  private int getMax() {
     return max;
   }
 

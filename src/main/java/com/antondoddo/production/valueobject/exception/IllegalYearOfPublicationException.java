@@ -1,6 +1,6 @@
 package com.antondoddo.production.valueobject.exception;
 
-public class IllegalYearOfPublicationException extends IllegalArgumentException {
+public final class IllegalYearOfPublicationException extends IllegalArgumentException {
 
   private static final long serialVersionUID = 1L;
 

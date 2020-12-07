@@ -11,40 +11,47 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @RunWith(JUnitParamsRunner.class)
-public final class DirectorTest {
+public final class ActorTest {
 
   protected static Object[] shouldBeEqualsData() {
-    Director director0 = new Director("Bella", "Pete");
+
+    Actor actor1 = new Actor("Bella", "Pelui");
 
     return new Object[]{
             new Object[]{
-                    new Director("Damiano", "Petrungaro"),
-                    new Director("Damiano", "Petrungaro"),
+                    new Actor("Alessandra", "Conti"),
+                    new Actor("Alessandra", "Conti"),
             },
             new Object[]{
-                    director0, director0
+
+                    actor1,
+                    actor1
             },
+
+
     };
+
+
   }
 
   protected static Object[] shouldBeNotEqualsData() {
 
     return new Object[]{
             new Object[]{
-                    new Director("Damiano", "Petrungaro"),
-                    new Director("Antonio", "Farina"),
+                    new Actor("Damieno", "Petrunghero"),
+                    new Actor("Goffredo", "Goffredi"),
             },
-
     };
+
+
   }
 
   @Test
-  public void shouldThrowIllegalDirectorException() {
+  public void shouldThrowIllegalNameOrSurnameException() {
 
     IllegalNameOrSurnameException expected = null;
-
     try {
-      new Director("", "");
+      new Actor("A", "B");
 
     } catch (IllegalNameOrSurnameException e) {
 
@@ -54,43 +61,44 @@ public final class DirectorTest {
 
     assertNotNull(expected);
 
-    assertEquals(expected.toString(), "Director: Il nome o il cognome non sono validi");
+    assertEquals(expected.toString(), "Actor: Il nome o il cognome non sono validi");
+
+
   }
 
   @Test
   public void shouldReturnConstructorName() {
 
-    Director director = new Director("Antonio", "Farina");
+    Actor actor1 = new Actor("Alessandra", "Conti");
 
-    assertEquals("Antonio", director.getName());
+    assertEquals("Alessandra", actor1.getName());
 
   }
 
   @Test
   public void shouldReturnConstructorSurname() {
 
-    Director director = new Director("Antonio", "Farina");
+    Actor actor0 = new Actor("Alessandra", "Conti");
 
-    assertEquals("Farina", director.getSurname());
+    assertEquals("Conti", actor0.getSurname());
 
   }
 
   @Test
   @Parameters(method = "shouldBeEqualsData")
-  public void shouldBeEquals(Director director1, Director director2) {
+  public void shouldBeEquals(Actor actor1, Actor actor2) {
 
-    assertEquals(director1, director2);
+    assertEquals(actor1, actor2);
+
 
   }
 
   @Test
   @Parameters(method = "shouldBeNotEqualsData")
-  public void shouldBeNotEquals(Director director1, Director director2) {
+  public void shouldBeNotEquals(Actor actor1, Actor actor2) {
 
+    assertNotEquals(actor1, actor2);
 
-    assertNotEquals(director1, director2);
 
   }
-
-
 }
