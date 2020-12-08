@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 public final class YearOfPublication {
 
   private static final Pattern pat = Pattern.compile(
-          "\\\\d{4}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|[3][01])");
+          "\\d{4}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|[3][01])");
   private final String yearPublication;
 
   public YearOfPublication(String yearPublication) throws IllegalYearOfPublicationException {
@@ -18,7 +18,7 @@ public final class YearOfPublication {
     this.yearPublication = yearPublication;
   }
 
-  public String getDataPubblicazione() {
+  public String getYearOfPublication() {
     return yearPublication;
   }
 

@@ -13,9 +13,20 @@ import org.junit.runner.RunWith;
 @RunWith(JUnitParamsRunner.class)
 public final class DirectorTest {
 
+  @Test
+  public void shouldThrowIllegalDirectorException() {
+    IllegalNameOrSurnameException expected = null;
+    try {
+      new Director("", "");
+    } catch (IllegalNameOrSurnameException e) {
+      expected = e;
+    }
+    assertNotNull(expected);
+    assertEquals(expected.toString(), "Director: Il nome o il cognome non sono validi");
+  }
+
   protected static Object[] shouldBeEqualsData() {
     Director director0 = new Director("Bella", "Pete");
-
     return new Object[]{
             new Object[]{
                     new Director("Damiano", "Petrungaro"),
@@ -27,70 +38,36 @@ public final class DirectorTest {
     };
   }
 
-  protected static Object[] shouldBeNotEqualsData() {
+  @Test
+  @Parameters(method = "shouldBeEqualsData")
+  public void shouldBeEquals(Director director1, Director director2) {
+    assertEquals(director1, director2);
+  }
 
+  protected static Object[] shouldBeNotEqualsData() {
     return new Object[]{
             new Object[]{
                     new Director("Damiano", "Petrungaro"),
                     new Director("Antonio", "Farina"),
             },
-
     };
-  }
-
-  @Test
-  public void shouldThrowIllegalDirectorException() {
-
-    IllegalNameOrSurnameException expected = null;
-
-    try {
-      new Director("", "");
-
-    } catch (IllegalNameOrSurnameException e) {
-
-      expected = e;
-
-    }
-
-    assertNotNull(expected);
-
-    assertEquals(expected.toString(), "Director: Il nome o il cognome non sono validi");
-  }
-
-  @Test
-  public void shouldReturnConstructorName() {
-
-    Director director = new Director("Antonio", "Farina");
-
-    assertEquals("Antonio", director.getName());
-
-  }
-
-  @Test
-  public void shouldReturnConstructorSurname() {
-
-    Director director = new Director("Antonio", "Farina");
-
-    assertEquals("Farina", director.getSurname());
-
-  }
-
-  @Test
-  @Parameters(method = "shouldBeEqualsData")
-  public void shouldBeEquals(Director director1, Director director2) {
-
-    assertEquals(director1, director2);
-
   }
 
   @Test
   @Parameters(method = "shouldBeNotEqualsData")
   public void shouldBeNotEquals(Director director1, Director director2) {
-
-
     assertNotEquals(director1, director2);
-
   }
 
+  @Test
+  public void shouldReturnConstructorName() {
+    Director director = new Director("Antonio", "Farina");
+    assertEquals("Antonio", director.getName());
+  }
 
+  @Test
+  public void shouldReturnConstructorSurname() {
+    Director director = new Director("Antonio", "Farina");
+    assertEquals("Farina", director.getSurname());
+  }
 }

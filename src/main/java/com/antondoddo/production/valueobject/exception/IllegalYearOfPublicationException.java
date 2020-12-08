@@ -6,7 +6,7 @@ public final class IllegalYearOfPublicationException extends IllegalArgumentExce
 
   public IllegalYearOfPublicationException() {
 
-    super("DataException:");
+    super("DataException");
   }
 
   @Override
