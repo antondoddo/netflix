@@ -13,7 +13,7 @@ public final class NullSeasonTest {
   }
 
   @Test
-  public void shouldReturnANullSeasonString() {
+  public void shouldReturnNullSeasonString() {
     NullSeason nullSeason = new NullSeason();
     assertEquals("No season", nullSeason.toString());
   }

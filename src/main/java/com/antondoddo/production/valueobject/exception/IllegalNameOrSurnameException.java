@@ -6,13 +6,13 @@ public final class IllegalNameOrSurnameException extends IllegalArgumentExceptio
   private final String role;
 
   public IllegalNameOrSurnameException(String role) {
-    super();
+    super(role + ": Il nome o il cognome non sono validi");
     this.role = role;
   }
 
   @Override
   public String toString() {
-    return this.role + ": Il nome o il cognome non sono validi";
+    return getMessage();
   }
 
 }

@@ -37,7 +37,6 @@ public final class DescriptionTest {
     try {
       Description description = new Description(value);
     } catch (IllegalDescriptionException exception) {
-
       expected = exception;
     }
     assertNotNull(expected);
@@ -47,16 +46,13 @@ public final class DescriptionTest {
   }
 
   protected static Object[] shouldBeEqualsData() {
-
     Description description = new Description("Un pericoloso drago volava minaccioso sul cielo in tempesta");
     return new Object[]{
-
             new Object[]{
                     new Description("Il cavaliere prese la spada e uccise il drago con un colpo al cuore"),
                     new Description("Il cavaliere prese la spada e uccise il drago con un colpo al cuore"),
             },
             new Object[]{
-
                     description, description
             },
     };

@@ -6,12 +6,12 @@ public final class IllegalYearOfPublicationException extends IllegalArgumentExce
 
   public IllegalYearOfPublicationException() {
 
-    super("DataException");
+    super("La data non è valida");
   }
 
   @Override
   public String toString() {
 
-    return getMessage() + ": La data non è valida";
+    return getMessage();
   }
 }

@@ -8,13 +8,14 @@ public final class IllegalDescriptionException extends IllegalArgumentException 
 
 
   public IllegalDescriptionException() {
-    super("Descrizione non valida");
+    super(": la descrizione deve contenere più di "
+            + Description.min + " caratteri ma meno di "
+            + Description.max);
   }
 
   @Override
   public String toString() {
-    return ": la descrizione deve contenere più di "
-            + Description.min + " caratteri ma meno di "
-            + Description.max;
+    return getMessage();
   }
+
 }

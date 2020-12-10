@@ -13,7 +13,7 @@ public final class NullEpisodeTest {
   }
 
   @Test
-  public void shouldReturnANullEpisodeString() {
+  public void shouldReturnNullEpisodeString() {
     NullEpisode nullEpisode = new NullEpisode();
     assertEquals("No episode", nullEpisode.toString());
   }

@@ -5,11 +5,11 @@ public final class IllegalDurationException extends IllegalArgumentException {
   private static final long serialVersionUID = 1L;
 
   public IllegalDurationException() {
-    super("FilmDurationException");
+    super("Il film è troppo corto o troppo lungo");
   }
 
   @Override
   public String toString() {
-    return getMessage() + ": Il film è troppo corto o troppo lungo";
+    return getMessage();
   }
 }

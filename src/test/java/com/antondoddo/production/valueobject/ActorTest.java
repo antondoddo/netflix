@@ -16,30 +16,24 @@ public final class ActorTest {
   @Test
   public void shouldThrowIllegalNameOrSurnameException() {
 
-    IllegalNameOrSurnameException expected = null;
-    try {
+     IllegalNameOrSurnameException expected = null;
+     try {
       new Actor("A", "B");
-
-    } catch (IllegalNameOrSurnameException e) {
-
+     } catch (IllegalNameOrSurnameException e) {
       expected = e;
-
     }
     assertNotNull(expected);
     assertEquals(expected.toString(), "Actor: Il nome o il cognome non sono validi");
   }
 
   protected static Object[] shouldBeEqualsData() {
-
     Actor actor1 = new Actor("Bella", "Pelui");
-
     return new Object[]{
             new Object[]{
                     new Actor("Alessandra", "Conti"),
                     new Actor("Alessandra", "Conti"),
             },
             new Object[]{
-
                     actor1,
                     actor1
             },
@@ -49,12 +43,10 @@ public final class ActorTest {
   @Test
   @Parameters(method = "shouldBeEqualsData")
   public void shouldBeEquals(Actor actor1, Actor actor2) {
-
     assertEquals(actor1, actor2);
   }
 
   protected static Object[] shouldBeNotEqualsData() {
-
     return new Object[]{
             new Object[]{
                     new Actor("Damieno", "Petrunghero"),
@@ -66,7 +58,6 @@ public final class ActorTest {
   @Test
   @Parameters(method = "shouldBeNotEqualsData")
   public void shouldBeNotEquals(Actor actor1, Actor actor2) {
-
     assertNotEquals(actor1, actor2);
   }
 
@@ -81,8 +72,4 @@ public final class ActorTest {
     Actor actor0 = new Actor("Alessandra", "Conti");
     assertEquals("Conti", actor0.getSurname());
   }
-
-
-
-
 }
