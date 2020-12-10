@@ -15,13 +15,37 @@ public class TitleTest {
 
   protected static Object[] shouldBeThrowIllegalTitleExceptionData() {
     return new Object[]{
-            new Object[]{
-                    "",
-            }, new Object[]{
+        new Object[]{
+            "",
+        },
+        new Object[]{
             "aoooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo"
-                    + "oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo"
-                    + "oooooooooooooooooooooooooooooooooooooooooooooooooooooo"
-    }
+                + "oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo"
+                + "oooooooooooooooooooooooooooooooooooooooooooooooooooooo"
+        }
+    };
+  }
+
+  protected static Object[] shouldBeEqualsData() {
+    Title title = new Title("Spazio profondo");
+    return new Object[]{
+        new Object[]{
+            new Title("Odissea nello spazio"),
+            new Title("Odissea nello spazio")
+        },
+        new Object[]{
+            title,
+            title
+        }
+    };
+  }
+
+  protected static Object[] shouldBeNotEqualsData() {
+    return new Object[]{
+        new Object[]{
+            new Title("Odissea nello spazio"),
+            new Title("Scontro tra titani")
+        },
     };
   }
 
@@ -44,33 +68,10 @@ public class TitleTest {
     assertEquals("Il dragone", title.getTitle());
   }
 
-  protected static Object[] shouldBeEqualsData() {
-    Title title = new Title("Spazio profondo");
-    return new Object[]{
-            new Object[]{
-                    new Title("Odissea nello spazio"),
-                    new Title("Odissea nello spazio")
-            },
-            new Object[]{
-                    title,
-                    title
-            }
-    };
-  }
-
   @Test
   @Parameters(method = "shouldBeEqualsData")
   public void shouldBeEquals(Title title1, Title title2) {
     assertEquals(title1, title2);
-  }
-
-  protected static Object[] shouldBeNotEqualsData() {
-    return new Object[]{
-            new Object[]{
-                    new Title("Odissea nello spazio"),
-                    new Title("Scontro tra titani")
-            },
-    };
   }
 
   @Test

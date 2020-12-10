@@ -15,12 +15,36 @@ public class DurationTest {
 
   protected static Object[] shouldBeThrowIllegalDurationExceptionData() {
     return new Object[]{
-            new Object[]{
-                    java.time.Duration.ofSeconds(86401),
-            },
-            new Object[]{
-                    java.time.Duration.ofSeconds(0),
-            }
+        new Object[]{
+            java.time.Duration.ofSeconds(86401),
+        },
+        new Object[]{
+            java.time.Duration.ofSeconds(0),
+        }
+    };
+  }
+
+  protected static Object[] shouldBeEqualsData() {
+    java.time.Duration duration = java.time.Duration.ofSeconds(5600);
+    return new Object[]{
+        new Object[]{
+            java.time.Duration.ofSeconds(5600),
+            java.time.Duration.ofSeconds(5600)
+        },
+        new Object[]{
+            duration,
+            duration
+        }
+    };
+  }
+
+  protected static Object[] shouldBeNotEqualsData() {
+    java.time.Duration duration = java.time.Duration.ofSeconds(5600);
+    return new Object[]{
+        new Object[]{
+            java.time.Duration.ofSeconds(5600),
+            java.time.Duration.ofSeconds(9300)
+        }
     };
   }
 
@@ -43,34 +67,10 @@ public class DurationTest {
     assertEquals(java.time.Duration.ofSeconds(4400), filmDuration.getFilmDuration());
   }
 
-  protected static Object[] shouldBeEqualsData() {
-    java.time.Duration duration = java.time.Duration.ofSeconds(5600);
-    return new Object[]{
-            new Object[]{
-                    java.time.Duration.ofSeconds(5600),
-                    java.time.Duration.ofSeconds(5600)
-            },
-            new Object[]{
-                    duration,
-                    duration
-            }
-    };
-  }
-
   @Test
   @Parameters(method = "shouldBeEqualsData")
   public void shouldBeEquals(java.time.Duration duration1, java.time.Duration duration2) {
     assertEquals(duration1, duration2);
-  }
-
-  protected static Object[] shouldBeNotEqualsData() {
-    java.time.Duration duration = java.time.Duration.ofSeconds(5600);
-    return new Object[]{
-            new Object[]{
-                    java.time.Duration.ofSeconds(5600),
-                    java.time.Duration.ofSeconds(9300)
-            }
-    };
   }
 
   @Test

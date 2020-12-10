@@ -13,6 +13,28 @@ import org.junit.runner.RunWith;
 @RunWith(JUnitParamsRunner.class)
 public final class DirectorTest {
 
+  protected static Object[] shouldBeEqualsData() {
+    Director director0 = new Director("Bella", "Pete");
+    return new Object[]{
+        new Object[]{
+            new Director("Damiano", "Petrungaro"),
+            new Director("Damiano", "Petrungaro"),
+        },
+        new Object[]{
+            director0, director0
+        },
+    };
+  }
+
+  protected static Object[] shouldBeNotEqualsData() {
+    return new Object[]{
+        new Object[]{
+            new Director("Damiano", "Petrungaro"),
+            new Director("Antonio", "Farina"),
+        },
+    };
+  }
+
   @Test
   public void shouldThrowIllegalDirectorException() {
     IllegalNameOrSurnameException expected = null;
@@ -25,32 +47,10 @@ public final class DirectorTest {
     assertEquals(expected.toString(), "Director: Il nome o il cognome non sono validi");
   }
 
-  protected static Object[] shouldBeEqualsData() {
-    Director director0 = new Director("Bella", "Pete");
-    return new Object[]{
-            new Object[]{
-                    new Director("Damiano", "Petrungaro"),
-                    new Director("Damiano", "Petrungaro"),
-            },
-            new Object[]{
-                    director0, director0
-            },
-    };
-  }
-
   @Test
   @Parameters(method = "shouldBeEqualsData")
   public void shouldBeEquals(Director director1, Director director2) {
     assertEquals(director1, director2);
-  }
-
-  protected static Object[] shouldBeNotEqualsData() {
-    return new Object[]{
-            new Object[]{
-                    new Director("Damiano", "Petrungaro"),
-                    new Director("Antonio", "Farina"),
-            },
-    };
   }
 
   @Test

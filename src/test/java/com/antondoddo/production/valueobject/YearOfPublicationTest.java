@@ -15,20 +15,44 @@ public class YearOfPublicationTest {
 
   protected static Object[] shouldBeThrowIllegalYearOfPublicationException() {
     return new Object[]{
-            new Object[]{
-                    "20201-12-13"
-            },
-            new Object[]{
-                    "2020-14-13"
-            },
-            new Object[]{
-                    "2021-11-47"
-            },
-            new Object[]{
-                    "20201-16-33"
-            }
+        new Object[]{
+            "20201-12-13"
+        },
+        new Object[]{
+            "2020-14-13"
+        },
+        new Object[]{
+            "2021-11-47"
+        },
+        new Object[]{
+            "20201-16-33"
+        }
     };
   }
+
+  protected static Object[] shouldBeEqualsData() {
+    YearOfPublication yearOfPublication = new YearOfPublication("1998-03-27");
+    return new Object[]{
+        new Object[]{
+            new YearOfPublication("1993-01-19"),
+            new YearOfPublication("1993-01-19"),
+        },
+        new Object[]{
+            yearOfPublication,
+            yearOfPublication
+        }
+    };
+  }
+
+  protected static Object[] shouldBeNotEqualsData() {
+    return new Object[]{
+        new Object[]{
+            new YearOfPublication("1993-01-19"),
+            new YearOfPublication("1994-02-21"),
+        },
+    };
+  }
+
   @Test
   @Parameters(method = "shouldBeThrowIllegalYearOfPublicationException")
   public void shouldBeThrowIllegalYearOfPublication(String dateString) {
@@ -48,33 +72,10 @@ public class YearOfPublicationTest {
     assertEquals("2007-01-19", yearOfPublication.getYearOfPublication());
   }
 
-  protected static Object[] shouldBeEqualsData() {
-    YearOfPublication yearOfPublication = new YearOfPublication("1998-03-27");
-    return new Object[]{
-            new Object[]{
-                    new YearOfPublication("1993-01-19"),
-                    new YearOfPublication("1993-01-19"),
-            },
-            new Object[]{
-                    yearOfPublication,
-                    yearOfPublication
-            }
-    };
-  }
-
   @Test
   @Parameters(method = "shouldBeEqualsData")
   public void shouldBeEquals(YearOfPublication year1, YearOfPublication year2) {
     assertEquals(year1, year2);
-  }
-
-  protected static Object[] shouldBeNotEqualsData() {
-    return new Object[]{
-            new Object[]{
-                    new YearOfPublication("1993-01-19"),
-                    new YearOfPublication("1994-02-21"),
-            },
-    };
   }
 
   @Test

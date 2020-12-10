@@ -19,14 +19,6 @@ public final class Description {
     return value;
   }
 
-  private int getMin() {
-    return min;
-  }
-
-  private int getMax() {
-    return max;
-  }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {

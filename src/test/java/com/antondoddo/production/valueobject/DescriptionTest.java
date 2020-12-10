@@ -15,18 +15,41 @@ public final class DescriptionTest {
 
   protected static Object[] shouldThrowIllegalDescriptionExceptionData() {
     return new Object[]{
-            new Object[]{
-                    "asd"
-            },
-            new Object[]{
-                    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" +
-                            "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" +
-                            "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" +
-                            "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" +
-                            "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" +
-                            "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" +
-                            "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-            }
+        new Object[]{
+            "asd"
+        },
+        new Object[]{
+            "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                + "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                + "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                + "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                + "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                + "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                + "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        }
+    };
+  }
+
+  protected static Object[] shouldBeEqualsData() {
+    Description description = new Description(
+        "Un pericoloso drago volava minaccioso sul cielo in tempesta");
+    return new Object[]{
+        new Object[]{
+            new Description("Il cavaliere prese la spada e uccise il drago con un colpo al cuore"),
+            new Description("Il cavaliere prese la spada e uccise il drago con un colpo al cuore"),
+        },
+        new Object[]{
+            description, description
+        },
+    };
+  }
+
+  protected static Object[] shouldBeNotEqualsData() {
+    return new Object[]{
+        new Object[]{
+            new Description("Il cavaliere prese la spada"),
+            new Description("decise di risparmiare"),
+        },
     };
   }
 
@@ -41,36 +64,14 @@ public final class DescriptionTest {
     }
     assertNotNull(expected);
     assertEquals(expected.toString(), ": la descrizione deve contenere più di "
-            + Description.min + " caratteri ma meno di "
-            + Description.max);
-  }
-
-  protected static Object[] shouldBeEqualsData() {
-    Description description = new Description("Un pericoloso drago volava minaccioso sul cielo in tempesta");
-    return new Object[]{
-            new Object[]{
-                    new Description("Il cavaliere prese la spada e uccise il drago con un colpo al cuore"),
-                    new Description("Il cavaliere prese la spada e uccise il drago con un colpo al cuore"),
-            },
-            new Object[]{
-                    description, description
-            },
-    };
+        + Description.min + " caratteri ma meno di "
+        + Description.max);
   }
 
   @Test
   @Parameters(method = "shouldBeEqualsData")
   public void shouldBeEquals(Description description1, Description description2) {
     assertEquals(description1, description2);
-  }
-
-  protected static Object[] shouldBeNotEqualsData() {
-    return new Object[]{
-            new Object[]{
-                    new Description("Il cavaliere prese la spada e uccise il drago con un colpo al cuore"),
-                    new Description("Il cavaliere decise di risparmiare il drago e se ne andò verso il profondo Nord"),
-            },
-    };
   }
 
   @Test

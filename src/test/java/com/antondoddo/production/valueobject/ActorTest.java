@@ -13,46 +13,46 @@ import org.junit.runner.RunWith;
 @RunWith(JUnitParamsRunner.class)
 public final class ActorTest {
 
+  protected static Object[] shouldBeEqualsData() {
+    Actor actor1 = new Actor("Bella", "Pelui");
+    return new Object[]{
+        new Object[]{
+            new Actor("Alessandra", "Conti"),
+            new Actor("Alessandra", "Conti"),
+        },
+        new Object[]{
+            actor1,
+            actor1
+        },
+    };
+  }
+
+  protected static Object[] shouldBeNotEqualsData() {
+    return new Object[]{
+        new Object[]{
+            new Actor("Damieno", "Petrunghero"),
+            new Actor("Goffredo", "Goffredi"),
+        },
+    };
+  }
+
   @Test
   public void shouldThrowIllegalNameOrSurnameException() {
 
-     IllegalNameOrSurnameException expected = null;
-     try {
+    IllegalNameOrSurnameException expected = null;
+    try {
       new Actor("A", "B");
-     } catch (IllegalNameOrSurnameException e) {
+    } catch (IllegalNameOrSurnameException e) {
       expected = e;
     }
     assertNotNull(expected);
     assertEquals(expected.toString(), "Actor: Il nome o il cognome non sono validi");
   }
 
-  protected static Object[] shouldBeEqualsData() {
-    Actor actor1 = new Actor("Bella", "Pelui");
-    return new Object[]{
-            new Object[]{
-                    new Actor("Alessandra", "Conti"),
-                    new Actor("Alessandra", "Conti"),
-            },
-            new Object[]{
-                    actor1,
-                    actor1
-            },
-    };
-  }
-
   @Test
   @Parameters(method = "shouldBeEqualsData")
   public void shouldBeEquals(Actor actor1, Actor actor2) {
     assertEquals(actor1, actor2);
-  }
-
-  protected static Object[] shouldBeNotEqualsData() {
-    return new Object[]{
-            new Object[]{
-                    new Actor("Damieno", "Petrunghero"),
-                    new Actor("Goffredo", "Goffredi"),
-            },
-    };
   }
 
   @Test
