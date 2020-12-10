@@ -39,7 +39,7 @@ public class YearOfPublicationTest {
       expected = ex;
     }
     assertNotNull(expected);
-    assertEquals(expected.toString(), "DataException: La data non è valida");
+    assertEquals(expected.toString(), "La data non è valida");
   }
 
   @Test

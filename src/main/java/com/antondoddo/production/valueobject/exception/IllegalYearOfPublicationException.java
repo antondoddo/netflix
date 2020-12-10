@@ -5,13 +5,11 @@ public final class IllegalYearOfPublicationException extends IllegalArgumentExce
   private static final long serialVersionUID = 1L;
 
   public IllegalYearOfPublicationException() {
-
     super("La data non è valida");
   }
 
   @Override
   public String toString() {
-
     return getMessage();
   }
 }

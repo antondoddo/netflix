@@ -14,5 +14,4 @@ public final class IllegalNameOrSurnameException extends IllegalArgumentExceptio
   public String toString() {
     return getMessage();
   }
-
 }

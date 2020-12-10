@@ -34,7 +34,7 @@ public class DurationTest {
       expected = exception;
     }
     assertNotNull(expected);
-    assertEquals(expected.toString(), "FilmDurationException: Il film è troppo corto o troppo lungo");
+    assertEquals(expected.toString(), "Il film è troppo corto o troppo lungo");
   }
 
   @Test

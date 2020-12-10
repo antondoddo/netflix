@@ -6,7 +6,6 @@ public final class IllegalDescriptionException extends IllegalArgumentException 
 
   private static final long serialVersionUID = 1L;
 
-
   public IllegalDescriptionException() {
     super(": la descrizione deve contenere più di "
             + Description.min + " caratteri ma meno di "
@@ -17,5 +16,4 @@ public final class IllegalDescriptionException extends IllegalArgumentException 
   public String toString() {
     return getMessage();
   }
-
 }

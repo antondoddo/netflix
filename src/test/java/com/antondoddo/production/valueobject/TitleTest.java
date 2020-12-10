@@ -35,7 +35,7 @@ public class TitleTest {
       expected = ex;
     }
     assertNotNull(expected);
-    assertEquals(expected.toString(), "Invalid Title :Il titolo inserito non è valido");
+    assertEquals(expected.toString(), "Il titolo inserito non è valido");
   }
 
   @Test
