@@ -13,29 +13,23 @@ import org.junit.runner.RunWith;
 @RunWith(JUnitParamsRunner.class)
 public class YearOfPublicationTest {
 
-  protected static Object[] shouldBeThrowIllegalYearOfPublicationException() {
+  protected static Object[] shouldBeThrowIllegalYearOfPublicationExceptionData() {
     return new Object[]{
         new Object[]{
-            "20201-12-13"
+            20201
         },
         new Object[]{
-            "2020-14-13"
+            20
         },
-        new Object[]{
-            "2021-11-47"
-        },
-        new Object[]{
-            "20201-16-33"
-        }
     };
   }
 
   protected static Object[] shouldBeEqualsData() {
-    YearOfPublication yearOfPublication = new YearOfPublication("1998-03-27");
+    YearOfPublication yearOfPublication = new YearOfPublication(1998);
     return new Object[]{
         new Object[]{
-            new YearOfPublication("1993-01-19"),
-            new YearOfPublication("1993-01-19"),
+            new YearOfPublication(1993),
+            new YearOfPublication(1993),
         },
         new Object[]{
             yearOfPublication,
@@ -47,18 +41,18 @@ public class YearOfPublicationTest {
   protected static Object[] shouldBeNotEqualsData() {
     return new Object[]{
         new Object[]{
-            new YearOfPublication("1993-01-19"),
-            new YearOfPublication("1994-02-21"),
+            new YearOfPublication(1993),
+            new YearOfPublication(1994),
         },
     };
   }
 
   @Test
-  @Parameters(method = "shouldBeThrowIllegalYearOfPublicationException")
-  public void shouldBeThrowIllegalYearOfPublication(String dateString) {
+  @Parameters(method = "shouldBeThrowIllegalYearOfPublicationExceptionData")
+  public void shouldBeThrowIllegalYearOfPublicationException(Integer value) {
     IllegalYearOfPublicationException expected = null;
     try {
-      YearOfPublication yearOfPublication = new YearOfPublication(dateString);
+      new YearOfPublication(value);
     } catch (IllegalYearOfPublicationException ex) {
       expected = ex;
     }
@@ -68,8 +62,8 @@ public class YearOfPublicationTest {
 
   @Test
   public void shouldReturnYearOfPublication() {
-    YearOfPublication yearOfPublication = new YearOfPublication("2007-01-19");
-    assertEquals("2007-01-19", yearOfPublication.getYearOfPublication());
+    YearOfPublication yearOfPublication = new YearOfPublication(2007);
+    assertEquals(Integer.valueOf(2007), yearOfPublication.getValue());
   }
 
   @Test

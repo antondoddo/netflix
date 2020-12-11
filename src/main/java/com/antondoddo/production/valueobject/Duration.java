@@ -5,18 +5,18 @@ import com.antondoddo.production.valueobject.exception.IllegalDurationException;
 
 public final class Duration {
 
-  private final java.time.Duration filmDuration;
+  private final java.time.Duration timeDuration;
 
-  public Duration(java.time.Duration filmDuration) throws IllegalDurationException {
-    if (!checkDuration(filmDuration)) {
+  public Duration(java.time.Duration timeDuration) throws IllegalDurationException {
+    if (!checkDuration(timeDuration)) {
       throw new IllegalDurationException();
     }
 
-    this.filmDuration = filmDuration;
+    this.timeDuration = timeDuration;
   }
 
-  public java.time.Duration getFilmDuration() {
-    return filmDuration;
+  public java.time.Duration getTimeDuration() {
+    return timeDuration;
   }
 
   private boolean checkDuration(java.time.Duration duration) {
@@ -34,6 +34,6 @@ public final class Duration {
       return false;
     }
     Duration duration = (Duration) o;
-    return this.filmDuration == duration.filmDuration;
+    return this.timeDuration == duration.timeDuration;
   }
 }

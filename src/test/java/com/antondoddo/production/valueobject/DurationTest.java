@@ -64,7 +64,7 @@ public class DurationTest {
   @Test
   public void shouldBeReturnFilmDuration() {
     Duration filmDuration = new Duration(java.time.Duration.ofSeconds(4400));
-    assertEquals(java.time.Duration.ofSeconds(4400), filmDuration.getFilmDuration());
+    assertEquals(java.time.Duration.ofSeconds(4400), filmDuration.getTimeDuration());
   }
 
   @Test
