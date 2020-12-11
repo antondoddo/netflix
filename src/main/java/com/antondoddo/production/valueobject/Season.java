@@ -2,7 +2,7 @@ package com.antondoddo.production.valueobject;
 
 public interface Season {
 
-  int getValue();
+  Integer getValue();
 
   String toString();
 
