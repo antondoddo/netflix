@@ -34,14 +34,11 @@ due entità sono considerate uguali tra di loro se hanno lo stesso ID.
 
 Esempio: com.antondoddo.netflix.production.Production
 
-### Named constructors (pattern dal mondo PHP)
-
-_Probabilmente in Java esiste un nome migliore,
-tenere a mente che è una versione semplificata di un Simple Factory Pattern,
-ed è legato alla classe che deve essere creata per aiutare a garantirne lo stato sempre valido (vedi Always Valid State)_ 
+### Static Factory Methods 
 
 Design pattern che tramite mira a sostituire un semplice override del costruttore dando un nome esplicito e chiaro di quando usarlo.  
-Usato in concomitanza con un costruttore privato, si può garantire l'efficacia del naming del metodo.  
+Usato in concomitanza con un costruttore privato, si può garantire l'efficacia del naming del metodo.
+Essendo un metodo statico è legato alla classe, applicando questo pattern facilita la creazione di un oggetto in uno stato sempre valido (vedi Always Valid State).  
 
 Esempio: costruttori `ofMovie` e `ofEpisode` nella classe com.antondoddo.netflix.production.Production
 Esempio nella standard library: costruttori `ofSeconds` nella classe java.time.Duration
