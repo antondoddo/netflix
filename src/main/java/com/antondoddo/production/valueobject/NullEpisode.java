@@ -3,7 +3,7 @@ package com.antondoddo.production.valueobject;
 public class NullEpisode implements Episode {
 
   @Override
-  public int getValue() {
+  public Integer getValue() {
     return 0;
   }
 
@@ -12,4 +12,15 @@ public class NullEpisode implements Episode {
     return "No episode";
   }
 
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    NullEpisode episode = (NullEpisode) o;
+    return this.getValue() == episode.getValue();
+  }
 }
