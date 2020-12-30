@@ -17,11 +17,13 @@ public class SeasonImplTest {
     return new Object[]{
         new Object[]{
             0
-        }, new Object[]{
-        -7
-    }, new Object[]{
-        60
-    }
+        },
+        new Object[]{
+            -7
+        },
+        new Object[]{
+            60
+        }
     };
   }
 

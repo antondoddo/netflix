@@ -25,7 +25,8 @@ public class MongoMapper {
     pojo.description = production.getDescription().getValue();
     pojo.duration = production.getDuration().getFilmDuration();
     pojo.ageClassification = production.getAgeClassification().name();
-    pojo.filmDirector = new String[]{production.getDirection().getName(), production.getDirection().getSurname()};
+    pojo.filmDirector = new String[]{production.getDirection()
+        .getName(), production.getDirection().getSurname()};
     pojo.episode = production.getEpisode().getValue();
     pojo.season = production.getSeason().getValue();
     pojo.yearOfPublication = production.getYearOfPublication().getYearOfPublication();
@@ -52,8 +53,11 @@ public class MongoMapper {
           new Description((mongoPojo.description)),
           new Duration(mongoPojo.duration),
           new YearOfPublication(mongoPojo.yearOfPublication),
-          mongoPojo.genres.stream().map(Genre::valueOf).collect(Collectors.toCollection(ArrayList::new)),
-          mongoPojo.cast.stream().map((String[] actor) -> new Actor(actor[0], actor[1])).collect(Collectors.toCollection(ArrayList::new)),
+          mongoPojo.genres.stream().map(Genre::valueOf)
+              .collect(Collectors.toCollection(ArrayList::new)),
+          mongoPojo.cast.stream().map((String[] actor) ->
+              new Actor(actor[0], actor[1]))
+              .collect(Collectors.toCollection(ArrayList::new)),
           new Director(mongoPojo.filmDirector[0], mongoPojo.filmDirector[1]),
           AgeClassification.valueOf(mongoPojo.ageClassification)
       );
@@ -65,8 +69,10 @@ public class MongoMapper {
         new Description((mongoPojo.description)),
         new Duration(mongoPojo.duration),
         new YearOfPublication(mongoPojo.yearOfPublication),
-        mongoPojo.genres.stream().map(Genre::valueOf).collect(Collectors.toCollection(ArrayList::new)),
-        mongoPojo.cast.stream().map((String[] actor) -> new Actor(actor[0], actor[1])).collect(Collectors.toCollection(ArrayList::new)),
+        mongoPojo.genres.stream().map(Genre::valueOf)
+            .collect(Collectors.toCollection(ArrayList::new)),
+        mongoPojo.cast.stream().map((String[] actor) -> new Actor(actor[0], actor[1]))
+            .collect(Collectors.toCollection(ArrayList::new)),
         new Director(mongoPojo.filmDirector[0], mongoPojo.filmDirector[1]),
         AgeClassification.valueOf(mongoPojo.ageClassification),
         new EpisodeImpl(mongoPojo.episode),

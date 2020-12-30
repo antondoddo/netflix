@@ -2,7 +2,6 @@ package com.antondoddo.production.repository;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 import com.antondoddo.production.Production;
 import com.antondoddo.production.valueobject.Actor;
@@ -34,18 +33,25 @@ public class MongoMapperTest {
     cast.add(new Actor("Antonio", "Farina"));
     return new Object[]{
         new Object[]{
-            Production.ofMovie(UUID.randomUUID(), new Title("L'alba"), new Description("Film veramente bellissimo"),
-                new Duration(java.time.Duration.ofSeconds(86000)), new YearOfPublication("1993-01-19"),
+            Production.ofMovie(UUID.randomUUID(),
+                new Title("L'alba"),
+                new Description("Film veramente bellissimo"),
+                new Duration(java.time.Duration.ofSeconds(86000)),
+                new YearOfPublication("1993-01-19"),
                 genres,
                 cast,
                 new Director("Damiano", "Petrungaro"), AgeClassification.SETTE)
         },
         new Object[]{
-            Production.ofEpisode(UUID.randomUUID(), new Title("Il risveglio"), new Description("Episodio veramente bellissimo"),
-                new Duration(java.time.Duration.ofSeconds(70000)), new YearOfPublication("1998-02-20"),
+            Production.ofEpisode(UUID.randomUUID(),
+                new Title("Il risveglio"),
+                new Description("Episodio veramente bellissimo"),
+                new Duration(java.time.Duration.ofSeconds(70000)),
+                new YearOfPublication("1998-02-20"),
                 genres,
                 cast,
-                new Director("Damiano", "Petrungaro"), AgeClassification.QUATTORDICI,
+                new Director("Damiano", "Petrungaro"),
+                AgeClassification.QUATTORDICI,
                 new EpisodeImpl(2), new SeasonImpl(2))
         },
     };
@@ -63,12 +69,16 @@ public class MongoMapperTest {
     assertEquals(mongoProductionPojo.ageClassification, p.getAgeClassification().name());
     assertEquals(mongoProductionPojo.episode, p.getEpisode().getValue());
     assertEquals(mongoProductionPojo.season, p.getSeason().getValue());
-    assertArrayEquals(mongoProductionPojo.filmDirector, new String[]{p.getDirection().getName(), p.getDirection().getSurname()});
-    assertEquals(mongoProductionPojo.genres, p.getGenres().stream().map(Enum::name).collect(Collectors.toCollection(ArrayList::new)));
+    assertArrayEquals(mongoProductionPojo.filmDirector,
+        new String[]{p.getDirection().getName(), p.getDirection().getSurname()});
+    assertEquals(mongoProductionPojo.genres, p.getGenres().stream()
+        .map(Enum::name).collect(Collectors.toCollection(ArrayList::new)));
     assertArrayEquals(mongoProductionPojo.cast.toArray(), p.getCast().stream().map((Actor a) ->
-        new String[]{a.getName(), a.getSurname()}).collect(Collectors.toCollection(ArrayList::new)).toArray());
+        new String[]{a.getName(), a.getSurname()})
+        .collect(Collectors.toCollection(ArrayList::new)).toArray());
     assertEquals(mongoProductionPojo.duration, p.getDuration().getFilmDuration());
-    assertEquals(mongoProductionPojo.yearOfPublication, p.getYearOfPublication().getYearOfPublication());
+    assertEquals(mongoProductionPojo.yearOfPublication,
+        p.getYearOfPublication().getYearOfPublication());
   }
 
   protected static Object[] shouldBeMapperFromMongoProductionPojoData() {
