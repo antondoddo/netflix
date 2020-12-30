@@ -65,7 +65,7 @@ public class TitleTest {
   @Test
   public void shouldReturnTitle() {
     Title title = new Title("Il dragone");
-    assertEquals("Il dragone", title.getTitle());
+    assertEquals("Il dragone", title.getValue());
   }
 
   @Test

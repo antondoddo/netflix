@@ -21,5 +21,4 @@ public class MongoProductionPojo {
   public int episode;
   public int season;
 
-
 }
