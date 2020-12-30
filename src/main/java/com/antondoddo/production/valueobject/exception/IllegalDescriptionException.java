@@ -17,3 +17,5 @@ public final class IllegalDescriptionException extends IllegalArgumentException 
     return getMessage();
   }
 }
+
+

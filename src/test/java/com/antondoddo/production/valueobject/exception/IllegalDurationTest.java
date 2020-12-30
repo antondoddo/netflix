@@ -4,7 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-public class illegalDurationTest {
+public class IllegalDurationTest {
 
   @Test
   public void shouldBeThrowIllegalDurationTest() {
