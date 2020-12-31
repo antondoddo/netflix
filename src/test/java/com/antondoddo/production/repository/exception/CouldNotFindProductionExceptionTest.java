@@ -8,7 +8,8 @@ public class CouldNotFindProductionExceptionTest {
 
   @Test
   public void shouldBeThrowNotFindProductionException() {
-    CouldNotFindProductionException exception = new CouldNotFindProductionException(new Exception());
+    CouldNotFindProductionException exception =
+        new CouldNotFindProductionException(new Exception());
     assertEquals("Non ho potuto trovare nulla", exception.getMessage());
   }
 }
