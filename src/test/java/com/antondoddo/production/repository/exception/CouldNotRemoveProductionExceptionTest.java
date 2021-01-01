@@ -1,10 +1,20 @@
 package com.antondoddo.production.repository.exception;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertSame;
 
 import org.junit.Test;
 
 public class CouldNotRemoveProductionExceptionTest {
+
+  @Test
+  public void shouldBeThrowNotRemoveProductionExceptionWithThrowable() {
+    Exception throwable = new Exception();
+    CouldNotRemoveProductionException exception =
+        new CouldNotRemoveProductionException(throwable);
+    assertEquals("Non ho potuto cancellare la produzione", exception.getMessage());
+    assertSame(throwable, exception.getCause());
+  }
 
   @Test
   public void shouldBeThrowNotRemoveProductionException() {

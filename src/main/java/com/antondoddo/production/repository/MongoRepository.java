@@ -7,6 +7,8 @@ import com.antondoddo.production.repository.exception.CouldNotAddProductionExcep
 import com.antondoddo.production.repository.exception.CouldNotFindProductionException;
 import com.antondoddo.production.repository.exception.CouldNotRemoveProductionException;
 import com.mongodb.client.MongoCollection;
+import com.mongodb.client.result.DeleteResult;
+import com.mongodb.client.result.InsertOneResult;
 import java.util.UUID;
 
 public class MongoRepository implements Repository {
@@ -21,14 +23,11 @@ public class MongoRepository implements Repository {
 
   @Override
   public Production findProductionById(UUID id) throws CouldNotFindProductionException {
-    MongoProductionPojo foundProduction;
-    try {
-      foundProduction = this.mongoCollection.find(eq("_id", id)).first();
-    } catch (Exception e) {
-      throw new CouldNotFindProductionException(e);
-    }
+
+    MongoProductionPojo foundProduction = this.mongoCollection.find(eq("_id", id)).first();
+
     if (foundProduction == null) {
-      return null;
+      throw new CouldNotFindProductionException();
     }
     return this.mapper.fromMongoProductionPojo(foundProduction);
   }
@@ -36,19 +35,19 @@ public class MongoRepository implements Repository {
   @Override
   public void addProduction(Production production) throws CouldNotAddProductionException {
     MongoProductionPojo mongoProductionPojo = mapper.fromProduction(production);
-    try {
-      this.mongoCollection.insertOne(mongoProductionPojo);
-    } catch (Exception e) {
-      throw new CouldNotAddProductionException(e);
+    InsertOneResult result = this.mongoCollection.insertOne(mongoProductionPojo);
+    if (result.wasAcknowledged()) {
+      return;
     }
+    throw new CouldNotAddProductionException();
   }
 
   @Override
   public void removeProductionById(UUID id) throws CouldNotRemoveProductionException {
-    try {
-      this.mongoCollection.deleteOne(eq("_id", id));
-    } catch (Exception e) {
-      throw new CouldNotRemoveProductionException(e);
+    DeleteResult result = this.mongoCollection.deleteOne(eq("_id", id));
+    if (result.wasAcknowledged()) {
+      return;
     }
+    throw new CouldNotRemoveProductionException();
   }
 }

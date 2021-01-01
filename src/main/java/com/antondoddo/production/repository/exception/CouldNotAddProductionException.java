@@ -4,4 +4,8 @@ public class CouldNotAddProductionException extends RuntimeException {
   public CouldNotAddProductionException(Throwable throwable) {
     super("Non ho potuto aggiungere la produzione", throwable);
   }
+
+  public CouldNotAddProductionException() {
+    super("Non ho potuto aggiungere la produzione");
+  }
 }
