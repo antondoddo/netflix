@@ -4,7 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-public class IllegalSeasonExceptionTest {
+public final class IllegalSeasonExceptionTest {
 
   @Test
   public void shouldBeThrowIllegalSeasonException() {

@@ -50,7 +50,7 @@ public class EpisodeImplTest {
   @Test
   public void shouldReturnToString() {
     EpisodeImpl episode = new EpisodeImpl(1);
-    assertEquals("Episodio numero " + 1, episode.toString());
+    assertEquals("1", episode.toString());
   }
 
   protected static Object[] shouldBeEqualsData() {

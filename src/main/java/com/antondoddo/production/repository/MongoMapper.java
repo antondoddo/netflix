@@ -14,7 +14,7 @@ import com.antondoddo.production.valueobject.YearOfPublication;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
-public class MongoMapper {
+public final class MongoMapper {
 
   public MongoProductionPojo fromProduction(Production production) {
 
@@ -29,7 +29,7 @@ public class MongoMapper {
         .getName(), production.getDirection().getSurname()};
     pojo.episode = production.getEpisode().getValue();
     pojo.season = production.getSeason().getValue();
-    pojo.yearOfPublication = production.getYearOfPublication().getYearOfPublication();
+    pojo.yearOfPublication = production.getYearOfPublication().getValue();
     pojo.cast = production
         .getCast()
         .stream()
@@ -50,7 +50,7 @@ public class MongoMapper {
       return Production.ofMovie(
           mongoPojo.id,
           new Title(mongoPojo.title),
-          new Description((mongoPojo.description)),
+          new Description(mongoPojo.description),
           new Duration(mongoPojo.duration),
           new YearOfPublication(mongoPojo.yearOfPublication),
           mongoPojo.genres.stream().map(Genre::valueOf)

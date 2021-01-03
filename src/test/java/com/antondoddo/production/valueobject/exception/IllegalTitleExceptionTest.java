@@ -4,7 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-public class IllegalTitleExceptionTest {
+public final class IllegalTitleExceptionTest {
 
   @Test
   public void shouldBeThrowIllegalTitleException() {

@@ -20,7 +20,7 @@ public final class SeasonImpl implements Season {
 
   @Override
   public String toString() {
-    return "Stagione " + value;
+    return String.valueOf(value);
   }
 
   @Override

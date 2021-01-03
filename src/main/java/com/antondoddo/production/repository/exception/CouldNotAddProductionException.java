@@ -1,11 +1,14 @@
 package com.antondoddo.production.repository.exception;
 
-public class CouldNotAddProductionException extends RuntimeException {
+public final class CouldNotAddProductionException extends RuntimeException {
+
+  private static final String message = "Non ho potuto aggiungere la produzione";
+
   public CouldNotAddProductionException(Throwable throwable) {
-    super("Non ho potuto aggiungere la produzione", throwable);
+    super(message, throwable);
   }
 
   public CouldNotAddProductionException() {
-    super("Non ho potuto aggiungere la produzione");
+    super(message);
   }
 }

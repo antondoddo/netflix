@@ -50,7 +50,7 @@ public class SeasonImplTest {
   @Test
   public void shouldReturnToString() {
     SeasonImpl season = new SeasonImpl(1);
-    assertEquals("Stagione " + 1, season.toString());
+    assertEquals("1", season.toString());
   }
 
   protected static Object[] shouldBeEqualsData() {

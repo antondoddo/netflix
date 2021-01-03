@@ -23,7 +23,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @RunWith(JUnitParamsRunner.class)
-public class MongoMapperTest {
+public final class MongoMapperTest {
 
   protected static Object[] shouldBeMapperFromProductionData() {
 
@@ -78,7 +78,7 @@ public class MongoMapperTest {
         .collect(Collectors.toCollection(ArrayList::new)).toArray());
     assertEquals(mongoProductionPojo.duration, p.getDuration().getFilmDuration());
     assertEquals(mongoProductionPojo.yearOfPublication,
-        p.getYearOfPublication().getYearOfPublication());
+        p.getYearOfPublication().getValue());
   }
 
   protected static Object[] shouldBeMapperFromMongoProductionPojoData() {
@@ -145,6 +145,6 @@ public class MongoMapperTest {
         .collect(Collectors.toCollection(ArrayList::new))
         .toArray(), mongo.cast.toArray());
     assertEquals(p.getDuration().getFilmDuration(), mongo.duration);
-    assertEquals(p.getYearOfPublication().getYearOfPublication(), mongo.yearOfPublication);
+    assertEquals(p.getYearOfPublication().getValue(), mongo.yearOfPublication);
   }
 }

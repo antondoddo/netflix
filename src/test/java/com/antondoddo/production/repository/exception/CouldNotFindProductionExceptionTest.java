@@ -5,7 +5,7 @@ import static org.junit.Assert.assertSame;
 
 import org.junit.Test;
 
-public class CouldNotFindProductionExceptionTest {
+public final class CouldNotFindProductionExceptionTest {
 
   @Test
   public void shouldBeThrowNotFindProductionExceptionWithThrowable() {

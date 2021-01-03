@@ -4,7 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-public class IllegalEpisodeExceptionTest {
+public final class IllegalEpisodeExceptionTest {
 
   @Test
   public void shouldBeThrowIllegaleEpisodeException() {

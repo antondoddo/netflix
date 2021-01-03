@@ -11,7 +11,7 @@ import com.mongodb.client.result.DeleteResult;
 import com.mongodb.client.result.InsertOneResult;
 import java.util.UUID;
 
-public class MongoRepository implements Repository {
+public final class MongoRepository implements Repository {
 
   private final MongoCollection<MongoProductionPojo> mongoCollection;
   private final MongoMapper mapper;

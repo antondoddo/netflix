@@ -21,7 +21,7 @@ public final class EpisodeImpl implements Episode {
 
   @Override
   public String toString() {
-    return "Episodio numero " + value;
+    return String.valueOf(value);
   }
 
   @Override

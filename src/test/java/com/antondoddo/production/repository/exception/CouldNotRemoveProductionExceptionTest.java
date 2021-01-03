@@ -5,7 +5,7 @@ import static org.junit.Assert.assertSame;
 
 import org.junit.Test;
 
-public class CouldNotRemoveProductionExceptionTest {
+public final class CouldNotRemoveProductionExceptionTest {
 
   @Test
   public void shouldBeThrowNotRemoveProductionExceptionWithThrowable() {

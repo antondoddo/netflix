@@ -1,11 +1,13 @@
 package com.antondoddo.production.repository.exception;
 
-public class CouldNotFindProductionException extends RuntimeException {
+public final class CouldNotFindProductionException extends RuntimeException {
+  private static final String message = "Non ho potuto trovare nulla";
+
   public CouldNotFindProductionException(Throwable throwable) {
-    super("Non ho potuto trovare nulla", throwable);
+    super(message, throwable);
   }
 
   public CouldNotFindProductionException() {
-    super("Non ho potuto trovare nulla");
+    super(message);
   }
 }

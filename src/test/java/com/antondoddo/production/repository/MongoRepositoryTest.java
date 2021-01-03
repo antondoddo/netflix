@@ -18,7 +18,7 @@ import com.mongodb.client.result.InsertOneResult;
 import java.util.UUID;
 import org.junit.Test;
 
-public class MongoRepositoryTest {
+public final class MongoRepositoryTest {
 
   @Test
   public void shouldCreateMongoRepository() {

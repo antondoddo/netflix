@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.UUID;
 import org.bson.codecs.pojo.annotations.BsonId;
 
-public class MongoProductionPojo {
+public final class MongoProductionPojo {
 
   @BsonId
   public UUID id;
