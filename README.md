@@ -51,15 +51,28 @@ Design pattern che, grazie alla creazione di un "null object",
 gestisce i comportamenti di un oggetto che potrebbe essere referenziato come `null`. 
  
 Esempio: com.antondoddo.netflix.production.valueobject.NullSeason
+
+#### Repository Pattern
+
+#### Mapper
+
  
 ### Tests
- 
+
 #### Unit test
 
 I test unitari verificano il funzionamento di un oggetto (o piu in generale un singolo componente di un software).
 Trovando bug più velocemente, sia durante la scrittura di un nuovo oggetto che nella modifica di alcuni già esistenti. 
 
 Esempio: com.antondoddo.netflix.production.valueobject.ActorTest:shouldReturnConstructorSurname
+ 
+#### Integration test
+
+I test d'integrazione verificano il funzionamento di più componenti che comunicano tra di loro.
+Lo scopo della loro applicazione è trovare errori durante la comunicazione tra diversi componenti.
+
+Essi _solitamente_ vengono aggiunti dopo gli unit tests.
+Esempio: com.antondoddo.netflix.production.repository.MongoRepositoryIntegrationTest (nello specifico sono system integration tests)
 
 #### Data driven test
 
@@ -76,4 +89,18 @@ Quando si applica la metodogia si XXX varie fasi:
 
 RED: esistono solo i test, mancando l'implementazione i test falliranno.
 GREEN: l'implementazione è scritta e passa tutti i test unitari scritti precedentemente.
-REFACTOR: si itera sull'implementazione scritta per migliorala. La funzionalità sarà sempre garantita grazie alla presenza dei test.  
+REFACTOR: si itera sull'implementazione 
+
+#### Mock
+
+Fanno parte dei TestDouble.
+Sono degli oggetti-fantocci che vengono istruiti per ricevere una serie di chiamate a specifici metodi.
+Alcune volte potrebbero lanciare un Exception se un metodo non dovrebbe essere chiamato o riceve parametri errati. 
+
+Esempio: com.antondoddo.netflix.production.repository.MongoRepositoryTest (quelli che vengono wrappati dalla funzione `verify`)
+
+#### Stub
+
+Fanno parte dei TestDouble.
+Sono degli oggetti-fantocci che vengono istruiti per rispondere a specifici metodi. 
+\Esempio: com.antondoddo.netflix.production.repository.MongoRepositoryTest (quelli che vengono wrappati dalla funzione `when`)
