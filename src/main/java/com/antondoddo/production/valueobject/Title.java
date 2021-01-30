@@ -13,7 +13,7 @@ public final class Title {
     this.value = title;
   }
 
-  public String getTitle() {
+  public String getValue() {
     return value;
   }
 

@@ -69,7 +69,7 @@ public class YearOfPublicationTest {
   @Test
   public void shouldReturnYearOfPublication() {
     YearOfPublication yearOfPublication = new YearOfPublication("2007-01-19");
-    assertEquals("2007-01-19", yearOfPublication.getYearOfPublication());
+    assertEquals("2007-01-19", yearOfPublication.getValue());
   }
 
   @Test

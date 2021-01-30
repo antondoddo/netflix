@@ -18,8 +18,8 @@ public final class YearOfPublication {
     this.yearPublication = yearPublication;
   }
 
-  public String getYearOfPublication() {
-    return yearPublication;
+  public String getValue() {
+    return this.yearPublication;
   }
 
   private boolean checkData(String dataPub) {
