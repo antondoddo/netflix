@@ -15,6 +15,8 @@ import com.antondoddo.production.valueobject.SeasonImpl;
 import com.antondoddo.production.valueobject.Title;
 import com.antondoddo.production.valueobject.YearOfPublication;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 import junitparams.JUnitParamsRunner;
@@ -40,7 +42,8 @@ public final class MongoMapperTest {
                 new YearOfPublication("1993-01-19"),
                 genres,
                 cast,
-                new Director("Damiano", "Petrungaro"), AgeClassification.SETTE)
+                new Director("Damiano", "Petrungaro"),
+                AgeClassification.SETTE)
         },
         new Object[]{
             Production.ofEpisode(UUID.randomUUID(),
@@ -52,7 +55,8 @@ public final class MongoMapperTest {
                 cast,
                 new Director("Damiano", "Petrungaro"),
                 AgeClassification.QUATTORDICI,
-                new EpisodeImpl(2), new SeasonImpl(2))
+                new EpisodeImpl(2),
+                new SeasonImpl(2))
         },
     };
   }
@@ -63,20 +67,22 @@ public final class MongoMapperTest {
 
     MongoMapper mongoMapper = new MongoMapper();
     MongoProductionPojo mongoProductionPojo = mongoMapper.fromProduction(p);
+    List<String> expectedDirector = new ArrayList<>();
+    expectedDirector.add(p.getDirection().getName());
+    expectedDirector.add(p.getDirection().getSurname());
     assertEquals(mongoProductionPojo.id, p.getId());
     assertEquals(mongoProductionPojo.title, p.getTitle().getValue());
     assertEquals(mongoProductionPojo.description, p.getDescription().getValue());
     assertEquals(mongoProductionPojo.ageClassification, p.getAgeClassification().name());
     assertEquals(mongoProductionPojo.episode, p.getEpisode().getValue());
     assertEquals(mongoProductionPojo.season, p.getSeason().getValue());
-    assertArrayEquals(mongoProductionPojo.filmDirector,
-        new String[]{p.getDirection().getName(), p.getDirection().getSurname()});
+    assertEquals(mongoProductionPojo.filmDirector, expectedDirector);
     assertEquals(mongoProductionPojo.genres, p.getGenres().stream()
         .map(Enum::name).collect(Collectors.toCollection(ArrayList::new)));
     assertArrayEquals(mongoProductionPojo.cast.toArray(), p.getCast().stream().map((Actor a) ->
-        new String[]{a.getName(), a.getSurname()})
+        Arrays.asList(a.getName(), a.getSurname()))
         .collect(Collectors.toCollection(ArrayList::new)).toArray());
-    assertEquals(mongoProductionPojo.duration, p.getDuration().getFilmDuration());
+    assertEquals(mongoProductionPojo.duration, p.getDuration().getFilmDuration().toMillis());
     assertEquals(mongoProductionPojo.yearOfPublication,
         p.getYearOfPublication().getValue());
   }
@@ -84,34 +90,39 @@ public final class MongoMapperTest {
   protected static Object[] shouldBeMapperFromMongoProductionPojoData() {
     //Film
     MongoProductionPojo mongo1 = new MongoProductionPojo();
+    List<List<String>> cast = new ArrayList<>();
+    cast.add(0, Arrays.asList("Tom", "Cruise"));
+    cast.add(1, Arrays.asList("Brad", "Pitt"));
     mongo1.id = UUID.randomUUID();
     mongo1.title = "Ma che bella giornata";
     mongo1.description = "Il film è molto avvincente";
     mongo1.ageClassification = AgeClassification.SETTE.name();
-    mongo1.filmDirector = new String[]{"Mario Bianchi", "Giacomo Verdi"};
-    mongo1.cast = new ArrayList<String[]>();
-    mongo1.cast.add(new String[]{"Tom Cruise", "Brad Pitt"});
+    mongo1.filmDirector = Arrays.asList("Mario", "Bianchi");
+    mongo1.cast = cast;
     mongo1.genres = new ArrayList<String>();
     mongo1.genres.add("COMEDY");
     mongo1.yearOfPublication = "2018-02-03";
     mongo1.episode = 0;
     mongo1.season = 0;
-    mongo1.duration = java.time.Duration.ofSeconds(86000);
+    mongo1.duration = 8600;
+
     //Episode
+    List<List<String>> cast2 = new ArrayList<>();
+    cast2.add(0, Arrays.asList("Tom", "Hardy"));
+    cast2.add(1, Arrays.asList("George", "Clooney"));
     MongoProductionPojo mongo2 = new MongoProductionPojo();
     mongo2.id = UUID.randomUUID();
     mongo2.title = "La guerra dei mondi";
     mongo2.description = "Il film è molto bello";
     mongo2.ageClassification = AgeClassification.QUATTORDICI.name();
-    mongo2.filmDirector = new String[]{"Antonio Frasca", "Mario Belli"};
-    mongo2.cast = new ArrayList<String[]>();
-    mongo2.cast.add(new String[]{"Tom Hardy", "George Clooney"});
+    mongo2.filmDirector = Arrays.asList("Antonio", "Frasca");
+    mongo2.cast = cast2;
     mongo2.genres = new ArrayList<String>();
     mongo2.genres.add("ADVENTURE");
     mongo2.yearOfPublication = "2017-03-05";
     mongo2.episode = 4;
     mongo2.season = 2;
-    mongo2.duration = java.time.Duration.ofSeconds(800);
+    mongo2.duration = 8000;
 
     return new Object[]{
         new Object[]{
@@ -136,15 +147,15 @@ public final class MongoMapperTest {
     assertEquals(p.getAgeClassification().name(), mongo.ageClassification);
     assertEquals(p.getEpisode().getValue(), mongo.episode);
     assertEquals(p.getSeason().getValue(), mongo.season);
-    assertArrayEquals(new String[]{p.getDirection().getName(),
-        p.getDirection().getSurname()}, mongo.filmDirector);
+    assertEquals(Arrays.asList(p.getDirection().getName(),
+        p.getDirection().getSurname()), mongo.filmDirector);
     assertEquals(p.getGenres().stream().map(Enum::name)
         .collect(Collectors.toCollection(ArrayList::new)), mongo.genres);
     assertArrayEquals(p.getCast().stream().map((Actor a) ->
-        new String[]{a.getName(), a.getSurname()})
+        Arrays.asList(a.getName(), a.getSurname()))
         .collect(Collectors.toCollection(ArrayList::new))
         .toArray(), mongo.cast.toArray());
-    assertEquals(p.getDuration().getFilmDuration(), mongo.duration);
+    assertEquals(p.getDuration().getFilmDuration().toMillis(), mongo.duration);
     assertEquals(p.getYearOfPublication().getValue(), mongo.yearOfPublication);
   }
 }

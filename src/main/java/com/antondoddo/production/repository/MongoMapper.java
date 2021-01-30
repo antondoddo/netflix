@@ -12,6 +12,8 @@ import com.antondoddo.production.valueobject.SeasonImpl;
 import com.antondoddo.production.valueobject.Title;
 import com.antondoddo.production.valueobject.YearOfPublication;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public final class MongoMapper {
@@ -23,17 +25,17 @@ public final class MongoMapper {
     pojo.id = production.getId();
     pojo.title = production.getTitle().getValue();
     pojo.description = production.getDescription().getValue();
-    pojo.duration = production.getDuration().getFilmDuration();
+    pojo.duration = production.getDuration().getFilmDuration().toMillis();
     pojo.ageClassification = production.getAgeClassification().name();
-    pojo.filmDirector = new String[]{production.getDirection()
-        .getName(), production.getDirection().getSurname()};
+    pojo.filmDirector = Arrays.asList(production.getDirection()
+        .getName(), production.getDirection().getSurname());
     pojo.episode = production.getEpisode().getValue();
     pojo.season = production.getSeason().getValue();
     pojo.yearOfPublication = production.getYearOfPublication().getValue();
     pojo.cast = production
         .getCast()
         .stream()
-        .map((Actor actor) -> new String[]{actor.getName(), actor.getSurname()})
+        .map((Actor actor) -> Arrays.asList(actor.getName(), actor.getSurname()))
         .collect(Collectors.toCollection(ArrayList::new));
     pojo.genres = production
         .getGenres()
@@ -51,14 +53,14 @@ public final class MongoMapper {
           mongoPojo.id,
           new Title(mongoPojo.title),
           new Description(mongoPojo.description),
-          new Duration(mongoPojo.duration),
+          new Duration(java.time.Duration.ofMillis(mongoPojo.duration)),
           new YearOfPublication(mongoPojo.yearOfPublication),
           mongoPojo.genres.stream().map(Genre::valueOf)
               .collect(Collectors.toCollection(ArrayList::new)),
-          mongoPojo.cast.stream().map((String[] actor) ->
-              new Actor(actor[0], actor[1]))
+          mongoPojo.cast.stream().map((List<String> actor) ->
+              new Actor(actor.get(0), actor.get(1)))
               .collect(Collectors.toCollection(ArrayList::new)),
-          new Director(mongoPojo.filmDirector[0], mongoPojo.filmDirector[1]),
+          new Director(mongoPojo.filmDirector.get(0), mongoPojo.filmDirector.get(1)),
           AgeClassification.valueOf(mongoPojo.ageClassification)
       );
     }
@@ -67,13 +69,13 @@ public final class MongoMapper {
         mongoPojo.id,
         new Title(mongoPojo.title),
         new Description((mongoPojo.description)),
-        new Duration(mongoPojo.duration),
+        new Duration(java.time.Duration.ofMillis(mongoPojo.duration)),
         new YearOfPublication(mongoPojo.yearOfPublication),
         mongoPojo.genres.stream().map(Genre::valueOf)
             .collect(Collectors.toCollection(ArrayList::new)),
-        mongoPojo.cast.stream().map((String[] actor) -> new Actor(actor[0], actor[1]))
+        mongoPojo.cast.stream().map((List<String> actor) -> new Actor(actor.get(0), actor.get(1)))
             .collect(Collectors.toCollection(ArrayList::new)),
-        new Director(mongoPojo.filmDirector[0], mongoPojo.filmDirector[1]),
+        new Director(mongoPojo.filmDirector.get(0), mongoPojo.filmDirector.get(1)),
         AgeClassification.valueOf(mongoPojo.ageClassification),
         new EpisodeImpl(mongoPojo.episode),
         new SeasonImpl(mongoPojo.season)
