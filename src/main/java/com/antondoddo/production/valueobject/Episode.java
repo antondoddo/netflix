@@ -9,4 +9,5 @@ public interface Episode {
 
   String toString();
 
+  boolean equals(Object o);
 }

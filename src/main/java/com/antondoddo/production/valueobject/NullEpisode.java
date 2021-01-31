@@ -12,4 +12,15 @@ public class NullEpisode implements Episode {
     return "No episode";
   }
 
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || this.getClass() != o.getClass()) {
+      return false;
+    }
+    NullEpisode season = (NullEpisode) o;
+    return this.getValue() == season.getValue();
+  }
 }

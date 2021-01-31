@@ -6,4 +6,5 @@ public interface Season {
 
   String toString();
 
+  boolean equals(Object o);
 }
