@@ -1,10 +1,10 @@
 package com.antondoddo.production.valueobject.exception;
 
-public final class IllegalYearOfPublicationException extends IllegalArgumentException {
+public final class IllegalReleaseDateException extends IllegalArgumentException {
 
   private static final long serialVersionUID = 1L;
 
-  public IllegalYearOfPublicationException() {
+  public IllegalReleaseDateException() {
     super("La data non è valida");
   }
 

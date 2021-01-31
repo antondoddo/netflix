@@ -13,10 +13,10 @@ import com.antondoddo.production.valueobject.EpisodeImpl;
 import com.antondoddo.production.valueobject.Genre;
 import com.antondoddo.production.valueobject.NullEpisode;
 import com.antondoddo.production.valueobject.NullSeason;
+import com.antondoddo.production.valueobject.ReleaseDate;
 import com.antondoddo.production.valueobject.Season;
 import com.antondoddo.production.valueobject.SeasonImpl;
 import com.antondoddo.production.valueobject.Title;
-import com.antondoddo.production.valueobject.YearOfPublication;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.UUID;
@@ -30,7 +30,7 @@ public final class ProductionTest {
     Title title = new Title("A title");
     Description description = new Description("A description");
     Duration duration = new Duration(java.time.Duration.ofSeconds(100));
-    YearOfPublication yearOfPublication = new YearOfPublication("2000-01-02");
+    ReleaseDate releaseDate = new ReleaseDate("2000-01-02");
     ArrayList<Genre> genres = new ArrayList<>(Arrays.asList(Genre.DRAMA, Genre.COMEDY));
     ArrayList<Actor> cast = new ArrayList<>(Arrays.asList(new Actor("Micheal", "Jackson")));
     Director direction = new Director("John", "Snow");
@@ -41,7 +41,7 @@ public final class ProductionTest {
         title,
         description,
         duration,
-        yearOfPublication,
+        releaseDate,
         genres,
         cast,
         direction,
@@ -52,7 +52,7 @@ public final class ProductionTest {
     assertSame(title, production.getTitle());
     assertSame(description, production.getDescription());
     assertSame(duration, production.getDuration());
-    assertSame(yearOfPublication, production.getYearOfPublication());
+    assertSame(releaseDate, production.getReleaseDate());
     assertSame(genres, production.getGenres());
     assertSame(cast, production.getCast());
     assertSame(direction, production.getDirection());
@@ -67,7 +67,7 @@ public final class ProductionTest {
     Title title = new Title("A title");
     Description description = new Description("A description");
     Duration duration = new Duration(java.time.Duration.ofSeconds(100));
-    YearOfPublication yearOfPublication = new YearOfPublication("2000-01-02");
+    ReleaseDate releaseDate = new ReleaseDate("2000-01-02");
     ArrayList<Genre> genres = new ArrayList<>(Arrays.asList(Genre.DRAMA, Genre.COMEDY));
     ArrayList<Actor> cast = new ArrayList<>(Arrays.asList(new Actor("Micheal", "Jackson")));
     Director direction = new Director("John", "Snow");
@@ -80,7 +80,7 @@ public final class ProductionTest {
         title,
         description,
         duration,
-        yearOfPublication,
+        releaseDate,
         genres,
         cast,
         direction,
@@ -93,7 +93,7 @@ public final class ProductionTest {
     assertSame(title, production.getTitle());
     assertSame(description, production.getDescription());
     assertSame(duration, production.getDuration());
-    assertSame(yearOfPublication, production.getYearOfPublication());
+    assertSame(releaseDate, production.getReleaseDate());
     assertSame(genres, production.getGenres());
     assertSame(cast, production.getCast());
     assertSame(direction, production.getDirection());

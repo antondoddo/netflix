@@ -6,14 +6,12 @@ import com.antondoddo.production.valueobject.Description;
 import com.antondoddo.production.valueobject.Director;
 import com.antondoddo.production.valueobject.Duration;
 import com.antondoddo.production.valueobject.Episode;
-import com.antondoddo.production.valueobject.EpisodeImpl;
 import com.antondoddo.production.valueobject.Genre;
 import com.antondoddo.production.valueobject.NullEpisode;
 import com.antondoddo.production.valueobject.NullSeason;
+import com.antondoddo.production.valueobject.ReleaseDate;
 import com.antondoddo.production.valueobject.Season;
-import com.antondoddo.production.valueobject.SeasonImpl;
 import com.antondoddo.production.valueobject.Title;
-import com.antondoddo.production.valueobject.YearOfPublication;
 import java.util.ArrayList;
 import java.util.UUID;
 
@@ -23,7 +21,7 @@ public final class Production {
   private final Title title;
   private final Description description;
   private final Duration duration;
-  private final YearOfPublication yearOfPublication;
+  private final ReleaseDate releaseDate;
   private final ArrayList<Genre> genres;
   private final ArrayList<Actor> cast;
   private final Director filmDirector;
@@ -36,7 +34,7 @@ public final class Production {
           Title title,
           Description description,
           Duration duration,
-          YearOfPublication yearOfPublication,
+          ReleaseDate releaseDate,
           ArrayList<Genre> genres,
           ArrayList<Actor> cast,
           Director filmDirector,
@@ -48,7 +46,7 @@ public final class Production {
     this.title = title;
     this.description = description;
     this.duration = duration;
-    this.yearOfPublication = yearOfPublication;
+    this.releaseDate = releaseDate;
     this.genres = genres;
     this.cast = cast;
     this.filmDirector = filmDirector;
@@ -62,7 +60,7 @@ public final class Production {
           Title title,
           Description description,
           Duration duration,
-          YearOfPublication yearOfPublication,
+          ReleaseDate releaseDate,
           ArrayList<Genre> genres,
           ArrayList<Actor> cast,
           Director direction,
@@ -73,7 +71,7 @@ public final class Production {
             title,
             description,
             duration,
-            yearOfPublication,
+        releaseDate,
             genres,
             cast,
             direction,
@@ -88,7 +86,7 @@ public final class Production {
           Title title,
           Description description,
           Duration duration,
-          YearOfPublication yearOfPublication,
+          ReleaseDate releaseDate,
           ArrayList<Genre> genres,
           ArrayList<Actor> cast,
           Director direction,
@@ -101,7 +99,7 @@ public final class Production {
             title,
             description,
             duration,
-            yearOfPublication,
+        releaseDate,
             genres,
             cast,
             direction,
@@ -127,8 +125,8 @@ public final class Production {
     return duration;
   }
 
-  public YearOfPublication getYearOfPublication() {
-    return yearOfPublication;
+  public ReleaseDate getReleaseDate() {
+    return releaseDate;
   }
 
   public ArrayList<Genre> getGenres() {

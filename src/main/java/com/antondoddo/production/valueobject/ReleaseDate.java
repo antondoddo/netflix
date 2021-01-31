@@ -1,19 +1,19 @@
 package com.antondoddo.production.valueobject;
 
-import com.antondoddo.production.valueobject.exception.IllegalYearOfPublicationException;
+import com.antondoddo.production.valueobject.exception.IllegalReleaseDateException;
 import java.util.regex.Pattern;
 
-public final class YearOfPublication {
+public final class ReleaseDate {
 
   private static final Pattern pat = Pattern.compile(
           "\\d{4}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|[3][01])");
   private final String yearPublication;
 
-  public YearOfPublication(String yearPublication) throws IllegalYearOfPublicationException {
+  public ReleaseDate(String yearPublication) throws IllegalReleaseDateException {
 
     if (!checkData(yearPublication)) {
 
-      throw new IllegalYearOfPublicationException();
+      throw new IllegalReleaseDateException();
     }
     this.yearPublication = yearPublication;
   }
@@ -35,7 +35,7 @@ public final class YearOfPublication {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    YearOfPublication publication = (YearOfPublication) o;
+    ReleaseDate publication = (ReleaseDate) o;
     return this.yearPublication == publication.yearPublication;
   }
 }

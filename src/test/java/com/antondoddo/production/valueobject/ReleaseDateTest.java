@@ -4,16 +4,16 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 
-import com.antondoddo.production.valueobject.exception.IllegalYearOfPublicationException;
+import com.antondoddo.production.valueobject.exception.IllegalReleaseDateException;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @RunWith(JUnitParamsRunner.class)
-public class YearOfPublicationTest {
+public class ReleaseDateTest {
 
-  protected static Object[] shouldBeThrowIllegalYearOfPublicationException() {
+  protected static Object[] shouldBeThrowIllegalReleaseDateException() {
     return new Object[]{
         new Object[]{
             "20201-12-13"
@@ -31,15 +31,15 @@ public class YearOfPublicationTest {
   }
 
   protected static Object[] shouldBeEqualsData() {
-    YearOfPublication yearOfPublication = new YearOfPublication("1998-03-27");
+    ReleaseDate releaseDate = new ReleaseDate("1998-03-27");
     return new Object[]{
         new Object[]{
-            new YearOfPublication("1993-01-19"),
-            new YearOfPublication("1993-01-19"),
+            new ReleaseDate("1993-01-19"),
+            new ReleaseDate("1993-01-19"),
         },
         new Object[]{
-            yearOfPublication,
-            yearOfPublication
+            releaseDate,
+            releaseDate
         }
     };
   }
@@ -47,19 +47,19 @@ public class YearOfPublicationTest {
   protected static Object[] shouldBeNotEqualsData() {
     return new Object[]{
         new Object[]{
-            new YearOfPublication("1993-01-19"),
-            new YearOfPublication("1994-02-21"),
+            new ReleaseDate("1993-01-19"),
+            new ReleaseDate("1994-02-21"),
         },
     };
   }
 
   @Test
-  @Parameters(method = "shouldBeThrowIllegalYearOfPublicationException")
-  public void shouldBeThrowIllegalYearOfPublication(String dateString) {
-    IllegalYearOfPublicationException expected = null;
+  @Parameters(method = "shouldBeThrowIllegalReleaseDateException")
+  public void shouldBeThrowIllegalReleaseDate(String dateString) {
+    IllegalReleaseDateException expected = null;
     try {
-      YearOfPublication yearOfPublication = new YearOfPublication(dateString);
-    } catch (IllegalYearOfPublicationException ex) {
+      ReleaseDate releaseDate = new ReleaseDate(dateString);
+    } catch (IllegalReleaseDateException ex) {
       expected = ex;
     }
     assertNotNull(expected);
@@ -67,20 +67,20 @@ public class YearOfPublicationTest {
   }
 
   @Test
-  public void shouldReturnYearOfPublication() {
-    YearOfPublication yearOfPublication = new YearOfPublication("2007-01-19");
-    assertEquals("2007-01-19", yearOfPublication.getValue());
+  public void shouldReturnReleaseDate() {
+    ReleaseDate releaseDate = new ReleaseDate("2007-01-19");
+    assertEquals("2007-01-19", releaseDate.getValue());
   }
 
   @Test
   @Parameters(method = "shouldBeEqualsData")
-  public void shouldBeEquals(YearOfPublication year1, YearOfPublication year2) {
+  public void shouldBeEquals(ReleaseDate year1, ReleaseDate year2) {
     assertEquals(year1, year2);
   }
 
   @Test
   @Parameters(method = "shouldBeNotEqualsData")
-  public void shouldBeNotEquals(YearOfPublication year1, YearOfPublication year2) {
+  public void shouldBeNotEquals(ReleaseDate year1, ReleaseDate year2) {
     assertNotEquals(year1, year2);
   }
 }

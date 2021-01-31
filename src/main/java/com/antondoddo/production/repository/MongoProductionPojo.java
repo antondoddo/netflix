@@ -14,7 +14,7 @@ public final class MongoProductionPojo {
   public String title;
   public String description;
   public long duration;
-  public String yearOfPublication;
+  public String releaseDate;
   public List<String> genres;
   public List<List<String>> cast;
   public List<String> filmDirector;

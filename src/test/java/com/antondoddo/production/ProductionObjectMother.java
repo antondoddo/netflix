@@ -8,10 +8,10 @@ import com.antondoddo.production.valueobject.Duration;
 import com.antondoddo.production.valueobject.Episode;
 import com.antondoddo.production.valueobject.EpisodeImpl;
 import com.antondoddo.production.valueobject.Genre;
+import com.antondoddo.production.valueobject.ReleaseDate;
 import com.antondoddo.production.valueobject.Season;
 import com.antondoddo.production.valueobject.SeasonImpl;
 import com.antondoddo.production.valueobject.Title;
-import com.antondoddo.production.valueobject.YearOfPublication;
 import com.github.javafaker.Faker;
 import java.util.ArrayList;
 import java.util.UUID;
@@ -26,7 +26,7 @@ public final class ProductionObjectMother {
         getRandomTitle(),
         getRandomDescription(),
         getRandomDuration(),
-        getRandomYearOfPublication(),
+        getRandomReleaseDate(),
         getRandomGenre(),
         getRandomCast(),
         getRandomDirector(),
@@ -42,7 +42,7 @@ public final class ProductionObjectMother {
         getRandomTitle(),
         getRandomDescription(),
         getRandomDuration(),
-        getRandomYearOfPublication(),
+        getRandomReleaseDate(),
         getRandomGenre(),
         getRandomCast(),
         getRandomDirector(),
@@ -74,8 +74,8 @@ public final class ProductionObjectMother {
     );
   }
 
-  private static YearOfPublication getRandomYearOfPublication() {
-    return new YearOfPublication(
+  private static ReleaseDate getRandomReleaseDate() {
+    return new ReleaseDate(
         faker.options().option(
             "2010-10-10",
             "1990-11-03",
