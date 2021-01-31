@@ -25,7 +25,7 @@ public final class Title {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Title yearOfPublication = (Title) o;
-    return this.value == yearOfPublication.value;
+    Title releaseDate = (Title) o;
+    return this.value == releaseDate.value;
   }
 }

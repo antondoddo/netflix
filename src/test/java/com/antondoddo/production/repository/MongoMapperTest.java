@@ -48,8 +48,7 @@ public final class MongoMapperTest {
         Arrays.asList(a.getName(), a.getSurname()))
         .collect(Collectors.toCollection(ArrayList::new)).toArray());
     assertEquals(mongoProductionPojo.duration, p.getDuration().getFilmDuration().toMillis());
-    assertEquals(mongoProductionPojo.yearOfPublication,
-        p.getYearOfPublication().getValue());
+    assertEquals(mongoProductionPojo.releaseDate, p.getReleaseDate().getValue().toString());
   }
 
   protected static Object[] shouldBeMapperFromMongoProductionPojoData() {
@@ -66,7 +65,7 @@ public final class MongoMapperTest {
     mongo1.cast = cast;
     mongo1.genres = new ArrayList<String>();
     mongo1.genres.add("COMEDY");
-    mongo1.yearOfPublication = "2018-02-03";
+    mongo1.releaseDate = "2018-02-03";
     mongo1.episode = 0;
     mongo1.season = 0;
     mongo1.duration = 8600;
@@ -84,7 +83,7 @@ public final class MongoMapperTest {
     mongo2.cast = cast2;
     mongo2.genres = new ArrayList<String>();
     mongo2.genres.add("ADVENTURE");
-    mongo2.yearOfPublication = "2017-03-05";
+    mongo2.releaseDate = "2017-03-05";
     mongo2.episode = 4;
     mongo2.season = 2;
     mongo2.duration = 8000;
@@ -121,6 +120,6 @@ public final class MongoMapperTest {
         .collect(Collectors.toCollection(ArrayList::new))
         .toArray(), mongo.cast.toArray());
     assertEquals(p.getDuration().getFilmDuration().toMillis(), mongo.duration);
-    assertEquals(p.getYearOfPublication().getValue(), mongo.yearOfPublication);
+    assertEquals(p.getReleaseDate().getValue().toString(), mongo.releaseDate);
   }
 }
