@@ -8,23 +8,12 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
 import com.antondoddo.production.Production;
-import com.antondoddo.production.valueobject.Actor;
-import com.antondoddo.production.valueobject.AgeClassification;
-import com.antondoddo.production.valueobject.Description;
-import com.antondoddo.production.valueobject.Director;
-import com.antondoddo.production.valueobject.Duration;
-import com.antondoddo.production.valueobject.EpisodeImpl;
-import com.antondoddo.production.valueobject.Genre;
-import com.antondoddo.production.valueobject.SeasonImpl;
-import com.antondoddo.production.valueobject.Title;
-import com.antondoddo.production.valueobject.YearOfPublication;
+import com.antondoddo.production.ProductionObjectMother;
 import com.mongodb.ConnectionString;
 import com.mongodb.MongoClientSettings;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
-import java.util.ArrayList;
-import java.util.UUID;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import org.apache.log4j.BasicConfigurator;
@@ -69,39 +58,15 @@ public final class MongoRepositoryIntegrationTest {
     assertEquals("netflix", mongoClient.getDatabase("netflix").getName());
   }
 
-  public Object[] shouldAddProductionData() {
-    ArrayList<Genre> genres = new ArrayList<Genre>();
-    genres.add(Genre.COMEDY);
-    ArrayList<Actor> cast = new ArrayList<Actor>();
-    cast.add(new Actor("Antonio", "Farina"));
+  public Object[] productionData() {
     return new Object[]{
-        new Object[]{
-            Production.ofMovie(UUID.randomUUID(),
-                new Title("L'alba dell'IntegrationTest"),
-                new Description("Questo è il primo IntegrationTest di Antonio"),
-                new Duration(java.time.Duration.ofSeconds(86000)),
-                new YearOfPublication("1994-02-22"),
-                genres,
-                cast,
-                new Director("Damiano", "Petrungaro"), AgeClassification.SETTE)
-        },
-        new Object[]{
-            Production.ofEpisode(UUID.randomUUID(),
-                new Title("Il risveglio dell'IntegrationTest"),
-                new Description("IntegrationTest veramente bellissimo"),
-                new Duration(java.time.Duration.ofSeconds(70000)),
-                new YearOfPublication("1999-05-12"),
-                genres,
-                cast,
-                new Director("Damiano", "Petrungaro"),
-                AgeClassification.QUATTORDICI,
-                new EpisodeImpl(2), new SeasonImpl(2))
-        },
+        new Object[]{ProductionObjectMother.createMovie()},
+        new Object[]{ProductionObjectMother.createEpisode()}
     };
   }
 
   @Test
-  @Parameters(method = "shouldAddProductionData")
+  @Parameters(method = "productionData")
   public void shouldAddProduction(Production production) {
     MongoCollection<MongoProductionPojo> mongoCollection =
         mongoClient.getDatabase("netflix")
@@ -116,7 +81,7 @@ public final class MongoRepositoryIntegrationTest {
   }
 
   @Test
-  @Parameters(method = "shouldAddProductionData")
+  @Parameters(method = "productionData")
   public void shouldFindProductionById(Production production) {
     MongoCollection<MongoProductionPojo> mongoCollection =
         mongoClient.getDatabase("netflix")
@@ -130,7 +95,7 @@ public final class MongoRepositoryIntegrationTest {
   }
 
   @Test
-  @Parameters(method = "shouldAddProductionData")
+  @Parameters(method = "productionData")
   public void shouldRemoveProductionById(Production production) {
     MongoCollection<MongoProductionPojo> mongoCollection =
         mongoClient.getDatabase("netflix")

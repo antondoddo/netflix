@@ -25,7 +25,7 @@ public final class Director {
 
   private boolean checkLength(String name) {
 
-    return name.length() > 2;
+    return name.length() > 1;
   }
 
   @Override
