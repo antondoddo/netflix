@@ -17,6 +17,7 @@ import com.antondoddo.production.valueobject.ReleaseDate;
 import com.antondoddo.production.valueobject.Season;
 import com.antondoddo.production.valueobject.SeasonImpl;
 import com.antondoddo.production.valueobject.Title;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.UUID;
@@ -30,7 +31,7 @@ public final class ProductionTest {
     Title title = new Title("A title");
     Description description = new Description("A description");
     Duration duration = new Duration(java.time.Duration.ofSeconds(100));
-    ReleaseDate releaseDate = new ReleaseDate("2000-01-02");
+    ReleaseDate releaseDate = new ReleaseDate(LocalDate.of(2000, 1, 2));
     ArrayList<Genre> genres = new ArrayList<>(Arrays.asList(Genre.DRAMA, Genre.COMEDY));
     ArrayList<Actor> cast = new ArrayList<>(Arrays.asList(new Actor("Micheal", "Jackson")));
     Director direction = new Director("John", "Snow");
@@ -67,7 +68,7 @@ public final class ProductionTest {
     Title title = new Title("A title");
     Description description = new Description("A description");
     Duration duration = new Duration(java.time.Duration.ofSeconds(100));
-    ReleaseDate releaseDate = new ReleaseDate("2000-01-02");
+    ReleaseDate releaseDate = new ReleaseDate(LocalDate.of(2000, 1, 2));
     ArrayList<Genre> genres = new ArrayList<>(Arrays.asList(Genre.DRAMA, Genre.COMEDY));
     ArrayList<Actor> cast = new ArrayList<>(Arrays.asList(new Actor("Micheal", "Jackson")));
     Director direction = new Director("John", "Snow");

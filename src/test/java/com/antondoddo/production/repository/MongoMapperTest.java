@@ -48,8 +48,7 @@ public final class MongoMapperTest {
         Arrays.asList(a.getName(), a.getSurname()))
         .collect(Collectors.toCollection(ArrayList::new)).toArray());
     assertEquals(mongoProductionPojo.duration, p.getDuration().getFilmDuration().toMillis());
-    assertEquals(mongoProductionPojo.releaseDate,
-        p.getReleaseDate().getValue());
+    assertEquals(mongoProductionPojo.releaseDate, p.getReleaseDate().getValue().toString());
   }
 
   protected static Object[] shouldBeMapperFromMongoProductionPojoData() {
@@ -121,6 +120,6 @@ public final class MongoMapperTest {
         .collect(Collectors.toCollection(ArrayList::new))
         .toArray(), mongo.cast.toArray());
     assertEquals(p.getDuration().getFilmDuration().toMillis(), mongo.duration);
-    assertEquals(p.getReleaseDate().getValue(), mongo.releaseDate);
+    assertEquals(p.getReleaseDate().getValue().toString(), mongo.releaseDate);
   }
 }

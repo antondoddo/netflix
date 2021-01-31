@@ -1,30 +1,28 @@
 package com.antondoddo.production.valueobject;
 
 import com.antondoddo.production.valueobject.exception.IllegalReleaseDateException;
-import java.util.regex.Pattern;
+import java.time.LocalDate;
 
 public final class ReleaseDate {
 
-  private static final Pattern pat = Pattern.compile(
-          "\\d{4}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|[3][01])");
-  private final String yearPublication;
+  private final LocalDate date;
 
-  public ReleaseDate(String yearPublication) throws IllegalReleaseDateException {
+  public ReleaseDate(LocalDate date) throws IllegalReleaseDateException {
 
-    if (!checkData(yearPublication)) {
+    if (!checkData(date)) {
 
       throw new IllegalReleaseDateException();
     }
-    this.yearPublication = yearPublication;
+    this.date = date;
   }
 
-  public String getValue() {
-    return this.yearPublication;
+  public LocalDate getValue() {
+    return this.date;
   }
 
-  private boolean checkData(String dataPub) {
+  private boolean checkData(LocalDate date) {
 
-    return pat.matcher(dataPub).matches();
+    return !date.isBefore(LocalDate.of(1700, 1, 1));
   }
 
   @Override
@@ -36,6 +34,6 @@ public final class ReleaseDate {
       return false;
     }
     ReleaseDate publication = (ReleaseDate) o;
-    return this.yearPublication == publication.yearPublication;
+    return this.date.equals(publication.date);
   }
 }
