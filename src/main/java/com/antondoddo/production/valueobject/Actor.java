@@ -24,7 +24,7 @@ public final class Actor {
   }
 
   private boolean checkLength(String name) {
-    return name.length() > 2;
+    return name.length() > 1;
   }
 
   @Override

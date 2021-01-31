@@ -4,16 +4,9 @@ import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
 import com.antondoddo.production.Production;
+import com.antondoddo.production.ProductionObjectMother;
 import com.antondoddo.production.valueobject.Actor;
 import com.antondoddo.production.valueobject.AgeClassification;
-import com.antondoddo.production.valueobject.Description;
-import com.antondoddo.production.valueobject.Director;
-import com.antondoddo.production.valueobject.Duration;
-import com.antondoddo.production.valueobject.EpisodeImpl;
-import com.antondoddo.production.valueobject.Genre;
-import com.antondoddo.production.valueobject.SeasonImpl;
-import com.antondoddo.production.valueobject.Title;
-import com.antondoddo.production.valueobject.YearOfPublication;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -26,38 +19,10 @@ import org.junit.runner.RunWith;
 
 @RunWith(JUnitParamsRunner.class)
 public final class MongoMapperTest {
-
   protected static Object[] shouldBeMapperFromProductionData() {
-
-    ArrayList<Genre> genres = new ArrayList<Genre>();
-    genres.add(Genre.COMEDY);
-    ArrayList<Actor> cast = new ArrayList<Actor>();
-    cast.add(new Actor("Antonio", "Farina"));
     return new Object[]{
-        new Object[]{
-            Production.ofMovie(UUID.randomUUID(),
-                new Title("L'alba"),
-                new Description("Film veramente bellissimo"),
-                new Duration(java.time.Duration.ofSeconds(86000)),
-                new YearOfPublication("1993-01-19"),
-                genres,
-                cast,
-                new Director("Damiano", "Petrungaro"),
-                AgeClassification.SETTE)
-        },
-        new Object[]{
-            Production.ofEpisode(UUID.randomUUID(),
-                new Title("Il risveglio"),
-                new Description("Episodio veramente bellissimo"),
-                new Duration(java.time.Duration.ofSeconds(70000)),
-                new YearOfPublication("1998-02-20"),
-                genres,
-                cast,
-                new Director("Damiano", "Petrungaro"),
-                AgeClassification.QUATTORDICI,
-                new EpisodeImpl(2),
-                new SeasonImpl(2))
-        },
+        new Object[]{ProductionObjectMother.createMovie()},
+        new Object[]{ProductionObjectMother.createEpisode()}
     };
   }
 
