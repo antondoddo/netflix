@@ -27,7 +27,6 @@ public final class MongoRepository implements Repository {
   public Production findProductionById(UUID id) throws CouldNotFindProductionException {
 
     MongoProductionPojo foundProduction = this.mongoCollection.find(eq("_id", id)).first();
-
     if (foundProduction == null) {
       throw new CouldNotFindProductionException();
     }
