@@ -10,7 +10,6 @@ public final class ReleaseDate {
   public ReleaseDate(LocalDate date) throws IllegalReleaseDateException {
 
     if (!checkData(date)) {
-
       throw new IllegalReleaseDateException();
     }
     this.date = date;
@@ -21,7 +20,6 @@ public final class ReleaseDate {
   }
 
   private boolean checkData(LocalDate date) {
-
     return !date.isBefore(LocalDate.of(1700, 1, 1));
   }
 
