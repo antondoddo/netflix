@@ -4,6 +4,7 @@ import static com.mongodb.client.model.Filters.eq;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertSame;
+import static org.mockito.ArgumentMatchers.argThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -13,10 +14,12 @@ import com.antondoddo.production.repository.exception.CouldNotFindProductionExce
 import com.antondoddo.production.repository.exception.CouldNotRemoveProductionException;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
+import com.mongodb.client.model.ReplaceOptions;
 import com.mongodb.client.result.DeleteResult;
-import com.mongodb.client.result.InsertOneResult;
+import com.mongodb.client.result.UpdateResult;
 import java.util.UUID;
 import org.junit.Test;
+import org.mockito.ArgumentMatchers;
 
 public final class MongoRepositoryTest {
 
@@ -78,11 +81,15 @@ public final class MongoRepositoryTest {
     MongoMapper mapper = mock(MongoMapper.class);
     when(mapper.fromProduction(production)).thenReturn(mongoProductionPojo);
 
-    InsertOneResult result = mock(InsertOneResult.class);
+    UpdateResult result = mock(UpdateResult.class);
     when(result.wasAcknowledged()).thenReturn(true);
 
     MongoCollection<MongoProductionPojo> mockedCollection = mock(MongoCollection.class);
-    when(mockedCollection.insertOne(mongoProductionPojo)).thenReturn(result);
+    when(mockedCollection.replaceOne(
+        ArgumentMatchers.eq(eq("_id", production.getId())),
+        ArgumentMatchers.eq(mongoProductionPojo),
+        argThat(ReplaceOptions::isUpsert)
+    )).thenReturn(result);
 
     MongoRepository mongo = new MongoRepository(mockedCollection, mapper);
 
@@ -101,11 +108,15 @@ public final class MongoRepositoryTest {
     MongoMapper mapper = mock(MongoMapper.class);
     when(mapper.fromProduction(production)).thenReturn(mongoProductionPojo);
 
-    InsertOneResult result = mock(InsertOneResult.class);
+    UpdateResult result = mock(UpdateResult.class);
     when(result.wasAcknowledged()).thenReturn(false);
 
     MongoCollection<MongoProductionPojo> mockedCollection = mock(MongoCollection.class);
-    when(mockedCollection.insertOne(mongoProductionPojo)).thenReturn(result);
+    when(mockedCollection.replaceOne(
+        ArgumentMatchers.eq(eq("_id", production.getId())),
+        ArgumentMatchers.eq(mongoProductionPojo),
+        argThat(ReplaceOptions::isUpsert)
+    )).thenReturn(result);
 
     MongoRepository mongo = new MongoRepository(mockedCollection, mapper);
 
@@ -147,7 +158,7 @@ public final class MongoRepositoryTest {
     UUID id = mock(UUID.class);
 
     CouldNotFindProductionException exception = null;
-    
+
     MongoMapper mapper = mock(MongoMapper.class);
 
     FindIterable findIterable = mock(FindIterable.class);

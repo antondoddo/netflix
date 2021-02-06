@@ -7,8 +7,10 @@ import com.antondoddo.production.repository.exception.CouldNotAddProductionExcep
 import com.antondoddo.production.repository.exception.CouldNotFindProductionException;
 import com.antondoddo.production.repository.exception.CouldNotRemoveProductionException;
 import com.mongodb.client.MongoCollection;
+import com.mongodb.client.model.ReplaceOptions;
 import com.mongodb.client.result.DeleteResult;
 import com.mongodb.client.result.InsertOneResult;
+import com.mongodb.client.result.UpdateResult;
 import java.util.UUID;
 
 public final class MongoRepository implements Repository {
@@ -35,7 +37,11 @@ public final class MongoRepository implements Repository {
   @Override
   public void addProduction(Production production) throws CouldNotAddProductionException {
     MongoProductionPojo mongoProductionPojo = mapper.fromProduction(production);
-    InsertOneResult result = this.mongoCollection.insertOne(mongoProductionPojo);
+    UpdateResult result = this.mongoCollection.replaceOne(
+        eq("_id", mongoProductionPojo.id),
+        mongoProductionPojo,
+        new ReplaceOptions().upsert(true)
+    );
     if (result.wasAcknowledged()) {
       return;
     }

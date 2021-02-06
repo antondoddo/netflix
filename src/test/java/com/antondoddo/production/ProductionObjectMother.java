@@ -22,8 +22,12 @@ public final class ProductionObjectMother {
   private static Faker faker = new Faker();
 
   public static Production createEpisode() {
+    return ProductionObjectMother.createEpisode(UUID.randomUUID());
+  }
+
+  public static Production createEpisode(UUID id) {
     return Production.ofEpisode(
-        UUID.randomUUID(),
+        id,
         getRandomTitle(),
         getRandomDescription(),
         getRandomDuration(),
@@ -38,8 +42,12 @@ public final class ProductionObjectMother {
   }
 
   public static Production createMovie() {
+    return ProductionObjectMother.createMovie(UUID.randomUUID());
+  }
+
+  public static Production createMovie(UUID id) {
     return Production.ofMovie(
-        UUID.randomUUID(),
+        id,
         getRandomTitle(),
         getRandomDescription(),
         getRandomDuration(),
