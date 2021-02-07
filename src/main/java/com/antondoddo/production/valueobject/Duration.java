@@ -11,7 +11,6 @@ public final class Duration {
     if (!checkDuration(filmDuration)) {
       throw new IllegalDurationException();
     }
-
     this.filmDuration = filmDuration;
   }
 

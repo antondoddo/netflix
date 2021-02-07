@@ -8,8 +8,8 @@ import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
+import com.antondoddo.production.ObjectMother;
 import com.antondoddo.production.Production;
-import com.antondoddo.production.ProductionObjectMother;
 import com.mongodb.ConnectionString;
 import com.mongodb.MongoClientSettings;
 import com.mongodb.client.MongoClient;
@@ -62,8 +62,8 @@ public final class MongoRepositoryIntegrationTest {
 
   public Object[] productionData() {
     return new Object[]{
-        new Object[]{ProductionObjectMother.createMovie()},
-        new Object[]{ProductionObjectMother.createEpisode()}
+        new Object[]{ObjectMother.createMovie()},
+        new Object[]{ObjectMother.createEpisode()}
     };
   }
 
@@ -85,7 +85,7 @@ public final class MongoRepositoryIntegrationTest {
   @Test
   public void shouldAddProductionReplaceWhenAlreadyExists() {
     UUID id = UUID.randomUUID();
-    Production production = ProductionObjectMother.createEpisode(id);
+    Production production = ObjectMother.createEpisode(id);
 
     MongoCollection<MongoProductionPojo> mongoCollection =
         mongoClient.getDatabase("netflix")
@@ -101,7 +101,7 @@ public final class MongoRepositoryIntegrationTest {
     assertNotNull(mongoProductionPojo);
     assertEquals(id, mongoProductionPojo.id);
 
-    Production updatedProduction = ProductionObjectMother.createMovie(id);
+    Production updatedProduction = ObjectMother.createMovie(id);
 
     mongoRepository.addProduction(updatedProduction);
 

@@ -5,7 +5,7 @@ import com.antondoddo.production.repository.Repository;
 import com.antondoddo.production.repository.exception.CouldNotFindProductionException;
 import java.util.UUID;
 
-public class FindUseCase {
+public final class FindUseCase {
 
   private Repository repository;
 
