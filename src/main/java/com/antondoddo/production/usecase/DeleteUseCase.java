@@ -6,7 +6,7 @@ import com.antondoddo.production.repository.exception.CouldNotFindProductionExce
 import com.antondoddo.production.repository.exception.CouldNotRemoveProductionException;
 import java.util.UUID;
 
-public class DeleteUseCase {
+public final class DeleteUseCase {
   private Repository repository;
 
   public DeleteUseCase(Repository repository) {

@@ -3,8 +3,8 @@ package com.antondoddo.production.repository;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
+import com.antondoddo.production.ObjectMother;
 import com.antondoddo.production.Production;
-import com.antondoddo.production.ProductionObjectMother;
 import com.antondoddo.production.valueobject.Actor;
 import com.antondoddo.production.valueobject.AgeClassification;
 import java.util.ArrayList;
@@ -21,8 +21,8 @@ import org.junit.runner.RunWith;
 public final class MongoMapperTest {
   protected static Object[] shouldBeMapperFromProductionData() {
     return new Object[]{
-        new Object[]{ProductionObjectMother.createMovie()},
-        new Object[]{ProductionObjectMother.createEpisode()}
+        new Object[]{ObjectMother.createMovie()},
+        new Object[]{ObjectMother.createEpisode()}
     };
   }
 

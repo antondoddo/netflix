@@ -15,7 +15,7 @@ import com.antondoddo.production.repository.exception.CouldNotRemoveProductionEx
 import java.util.UUID;
 import org.junit.Test;
 
-public class DeleteUseCaseTest {
+public final class DeleteUseCaseTest {
 
   @Test
   public void shouldRemoveProductionById() {

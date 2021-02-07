@@ -13,7 +13,7 @@ import com.antondoddo.production.repository.exception.CouldNotFindProductionExce
 import java.util.UUID;
 import org.junit.Test;
 
-public class FindUseCaseTest {
+public final class FindUseCaseTest {
 
   @Test
   public void shouldFindProductionById() {
