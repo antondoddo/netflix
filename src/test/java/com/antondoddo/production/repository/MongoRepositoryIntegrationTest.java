@@ -4,6 +4,7 @@ import static com.mongodb.client.model.Filters.eq;
 import static org.bson.codecs.configuration.CodecRegistries.fromProviders;
 import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
@@ -14,6 +15,7 @@ import com.mongodb.MongoClientSettings;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
+import java.util.UUID;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import org.apache.log4j.BasicConfigurator;
@@ -78,6 +80,37 @@ public final class MongoRepositoryIntegrationTest {
         mongoCollection.find(eq("_id", production.getId())).first();
     assertNotNull(mongoProductionPojo);
     assertEquals(production.getId(), mongoProductionPojo.id);
+  }
+
+  @Test
+  public void shouldAddProductionReplaceWhenAlreadyExists() {
+    UUID id = UUID.randomUUID();
+    Production production = ProductionObjectMother.createEpisode(id);
+
+    MongoCollection<MongoProductionPojo> mongoCollection =
+        mongoClient.getDatabase("netflix")
+            .getCollection("productions", MongoProductionPojo.class);
+    assertNull(mongoCollection.find(eq("_id", id)).first());
+
+    MongoRepository mongoRepository = new MongoRepository(mongoCollection, new MongoMapper());
+    mongoRepository.addProduction(production);
+
+    MongoProductionPojo mongoProductionPojo =
+        mongoCollection.find(eq("_id", id)).first();
+
+    assertNotNull(mongoProductionPojo);
+    assertEquals(id, mongoProductionPojo.id);
+
+    Production updatedProduction = ProductionObjectMother.createMovie(id);
+
+    mongoRepository.addProduction(updatedProduction);
+
+    MongoProductionPojo updatedMongoProductionPojo = mongoCollection.find(eq("_id", id)).first();
+
+    assertNotNull(updatedMongoProductionPojo);
+    assertEquals(id, updatedMongoProductionPojo.id);
+
+    assertNotEquals(mongoProductionPojo.season, updatedMongoProductionPojo.season);
   }
 
   @Test
