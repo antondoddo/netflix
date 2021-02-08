@@ -73,7 +73,7 @@ public final class AddUseCaseDto {
     return cast;
   }
 
-  public Director getFilmDirector() {
+  public Director getDirector() {
     return filmDirector;
   }
 
