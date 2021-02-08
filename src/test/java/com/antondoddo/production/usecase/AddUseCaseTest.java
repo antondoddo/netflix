@@ -97,7 +97,7 @@ public final class AddUseCaseTest {
             && production.getDescription().equals(addUseCaseDto
             .getDescription())
             && production.getDirection().equals(addUseCaseDto
-            .getFilmDirector())
+            .getDirector())
             && production.getTitle().equals(addUseCaseDto
             .getTitle())
             && production.getGenres().equals(addUseCaseDto
@@ -127,7 +127,7 @@ public final class AddUseCaseTest {
     assertEquals(prod.getDescription(), addUseCaseDto
         .getDescription());
     assertEquals(prod.getDirection(), addUseCaseDto
-        .getFilmDirector());
+        .getDirector());
     assertEquals(prod.getTitle(), addUseCaseDto
         .getTitle());
     assertEquals(prod.getGenres(), addUseCaseDto

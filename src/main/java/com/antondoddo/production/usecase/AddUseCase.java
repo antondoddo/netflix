@@ -31,7 +31,7 @@ public final class AddUseCase {
           addUseCaseDto.getReleaseDate(),
           addUseCaseDto.getGenres(),
           addUseCaseDto.getCast(),
-          addUseCaseDto.getFilmDirector(),
+          addUseCaseDto.getDirector(),
           addUseCaseDto.getAgeClassification(),
           addUseCaseDto.getEpisode(),
           addUseCaseDto.getSeason());
@@ -43,7 +43,7 @@ public final class AddUseCase {
           addUseCaseDto.getReleaseDate(),
           addUseCaseDto.getGenres(),
           addUseCaseDto.getCast(),
-          addUseCaseDto.getFilmDirector(),
+          addUseCaseDto.getDirector(),
           addUseCaseDto.getAgeClassification()
       );
     }
