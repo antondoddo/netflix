@@ -7,6 +7,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assume.assumeTrue;
 
 import com.antondoddo.production.ObjectMother;
 import com.antondoddo.production.Production;
@@ -25,16 +26,23 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.testcontainers.DockerClientFactory;
 import org.testcontainers.containers.MongoDBContainer;
 
 @RunWith(JUnitParamsRunner.class)
 public final class MongoRepositoryIntegrationTest {
+
+  static boolean hasDockerInstalled = DockerClientFactory.instance().isDockerAvailable();
 
   private static MongoDBContainer mongoContainer;
   private static MongoClient mongoClient;
 
   @BeforeClass
   public static void init() {
+    if (!hasDockerInstalled) {
+      return;
+    }
+
     BasicConfigurator.configure();
     mongoContainer = new MongoDBContainer("mongo:3.6.21");
     mongoContainer.start();
@@ -51,12 +59,18 @@ public final class MongoRepositoryIntegrationTest {
 
   @AfterClass
   public static void tearDown() {
+    if (!hasDockerInstalled) {
+      return;
+    }
+
     mongoClient.close();
     mongoContainer.close();
   }
 
   @Test
   public void test() {
+    assumeTrue(hasDockerInstalled);
+
     assertEquals("netflix", mongoClient.getDatabase("netflix").getName());
   }
 
@@ -70,6 +84,8 @@ public final class MongoRepositoryIntegrationTest {
   @Test
   @Parameters(method = "productionData")
   public void shouldAddProduction(Production production) {
+    assumeTrue(hasDockerInstalled);
+
     MongoCollection<MongoProductionPojo> mongoCollection =
         mongoClient.getDatabase("netflix")
             .getCollection("productions", MongoProductionPojo.class);
@@ -77,38 +93,42 @@ public final class MongoRepositoryIntegrationTest {
     MongoRepository mongoRepository = new MongoRepository(mongoCollection, new MongoMapper());
     mongoRepository.addProduction(production);
     MongoProductionPojo mongoProductionPojo =
-        mongoCollection.find(eq("_id", production.getId())).first();
+        mongoCollection.find(eq("_id", production.getId().toString())).first();
     assertNotNull(mongoProductionPojo);
-    assertEquals(production.getId(), mongoProductionPojo.id);
+    assertEquals(production.getId().toString(), mongoProductionPojo.id);
   }
 
   @Test
   public void shouldAddProductionReplaceWhenAlreadyExists() {
+    assumeTrue(hasDockerInstalled);
+
     UUID id = UUID.randomUUID();
     Production production = ObjectMother.createEpisode(id);
 
     MongoCollection<MongoProductionPojo> mongoCollection =
         mongoClient.getDatabase("netflix")
             .getCollection("productions", MongoProductionPojo.class);
-    assertNull(mongoCollection.find(eq("_id", id)).first());
+    assertNull(mongoCollection.find(eq("_id", id.toString())).first());
 
     MongoRepository mongoRepository = new MongoRepository(mongoCollection, new MongoMapper());
     mongoRepository.addProduction(production);
 
     MongoProductionPojo mongoProductionPojo =
-        mongoCollection.find(eq("_id", id)).first();
+        mongoCollection.find(eq("_id", id.toString())).first();
 
     assertNotNull(mongoProductionPojo);
-    assertEquals(id, mongoProductionPojo.id);
+    assertEquals(id.toString(), mongoProductionPojo.id);
 
     Production updatedProduction = ObjectMother.createMovie(id);
 
     mongoRepository.addProduction(updatedProduction);
 
-    MongoProductionPojo updatedMongoProductionPojo = mongoCollection.find(eq("_id", id)).first();
+    MongoProductionPojo updatedMongoProductionPojo = mongoCollection.find(
+        eq("_id", id.toString())
+    ).first();
 
     assertNotNull(updatedMongoProductionPojo);
-    assertEquals(id, updatedMongoProductionPojo.id);
+    assertEquals(id.toString(), updatedMongoProductionPojo.id);
 
     assertNotEquals(mongoProductionPojo.season, updatedMongoProductionPojo.season);
   }
@@ -116,6 +136,8 @@ public final class MongoRepositoryIntegrationTest {
   @Test
   @Parameters(method = "productionData")
   public void shouldFindProductionById(Production production) {
+    assumeTrue(hasDockerInstalled);
+
     MongoCollection<MongoProductionPojo> mongoCollection =
         mongoClient.getDatabase("netflix")
             .getCollection("productions", MongoProductionPojo.class);
@@ -130,6 +152,8 @@ public final class MongoRepositoryIntegrationTest {
   @Test
   @Parameters(method = "productionData")
   public void shouldRemoveProductionById(Production production) {
+    assumeTrue(hasDockerInstalled);
+
     MongoCollection<MongoProductionPojo> mongoCollection =
         mongoClient.getDatabase("netflix")
             .getCollection("productions", MongoProductionPojo.class);
@@ -137,6 +161,6 @@ public final class MongoRepositoryIntegrationTest {
     MongoRepository mongoRepository = new MongoRepository(mongoCollection, mongoMapper);
     mongoCollection.insertOne(mongoMapper.fromProduction(production));
     mongoRepository.removeProductionById(production.getId());
-    assertNull(mongoCollection.find(eq("_id", production.getId())).first());
+    assertNull(mongoCollection.find(eq("_id", production.getId().toString())).first());
   }
 }

@@ -38,7 +38,7 @@ public final class MongoRepositoryTest {
     when(deleteResult.wasAcknowledged()).thenReturn(true);
 
     MongoCollection<MongoProductionPojo> mockedCollection = mock(MongoCollection.class);
-    when(mockedCollection.deleteOne(eq("_id", id))).thenReturn(deleteResult);
+    when(mockedCollection.deleteOne(eq("_id", id.toString()))).thenReturn(deleteResult);
 
     MongoMapper mapper = mock(MongoMapper.class);
 
@@ -55,7 +55,7 @@ public final class MongoRepositoryTest {
     when(deleteResult.wasAcknowledged()).thenReturn(false);
 
     MongoCollection<MongoProductionPojo> mockedCollection = mock(MongoCollection.class);
-    when(mockedCollection.deleteOne(eq("_id", id))).thenReturn(deleteResult);
+    when(mockedCollection.deleteOne(eq("_id", id.toString()))).thenReturn(deleteResult);
 
     MongoMapper mapper = mock(MongoMapper.class);
 
@@ -146,7 +146,7 @@ public final class MongoRepositoryTest {
     when(findIterable.first()).thenReturn(mongoProductionPojo);
 
     MongoCollection<MongoProductionPojo> mockedCollection = mock(MongoCollection.class);
-    when(mockedCollection.find(eq("_id", id))).thenReturn(findIterable);
+    when(mockedCollection.find(eq("_id", id.toString()))).thenReturn(findIterable);
 
     MongoRepository mongoRepository = new MongoRepository(mockedCollection, mapper);
     Production foundProduction = mongoRepository.findProductionById(id);
@@ -165,7 +165,7 @@ public final class MongoRepositoryTest {
     when(findIterable.first()).thenReturn(null);
 
     MongoCollection<MongoProductionPojo> mockedCollection = mock(MongoCollection.class);
-    when(mockedCollection.find(eq("_id", id))).thenReturn(findIterable);
+    when(mockedCollection.find(eq("_id", id.toString()))).thenReturn(findIterable);
 
     MongoRepository mongo = new MongoRepository(mockedCollection, mapper);
 
