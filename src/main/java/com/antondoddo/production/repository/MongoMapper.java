@@ -15,6 +15,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 public final class MongoMapper {
@@ -23,10 +24,10 @@ public final class MongoMapper {
 
     MongoProductionPojo pojo = new MongoProductionPojo();
 
-    pojo.id = production.getId();
+    pojo.id = production.getId().toString();
     pojo.title = production.getTitle().getValue();
     pojo.description = production.getDescription().getValue();
-    pojo.duration = production.getDuration().getFilmDuration().toMillis();
+    pojo.duration = production.getDuration().getTimeDuration().toMillis();
     pojo.ageClassification = production.getAgeClassification().name();
     pojo.filmDirector = Arrays.asList(production.getDirection()
         .getName(), production.getDirection().getSurname());
@@ -51,7 +52,7 @@ public final class MongoMapper {
 
     if (mongoPojo.season == 0) {
       return Production.ofMovie(
-          mongoPojo.id,
+          UUID.fromString(mongoPojo.id),
           new Title(mongoPojo.title),
           new Description(mongoPojo.description),
           new Duration(java.time.Duration.ofMillis(mongoPojo.duration)),
@@ -67,7 +68,7 @@ public final class MongoMapper {
     }
 
     return Production.ofEpisode(
-        mongoPojo.id,
+        UUID.fromString(mongoPojo.id),
         new Title(mongoPojo.title),
         new Description((mongoPojo.description)),
         new Duration(java.time.Duration.ofMillis(mongoPojo.duration)),

@@ -9,7 +9,6 @@ import com.antondoddo.production.repository.exception.CouldNotRemoveProductionEx
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.ReplaceOptions;
 import com.mongodb.client.result.DeleteResult;
-import com.mongodb.client.result.InsertOneResult;
 import com.mongodb.client.result.UpdateResult;
 import java.util.UUID;
 
@@ -26,7 +25,9 @@ public final class MongoRepository implements Repository {
   @Override
   public Production findProductionById(UUID id) throws CouldNotFindProductionException {
 
-    MongoProductionPojo foundProduction = this.mongoCollection.find(eq("_id", id)).first();
+    MongoProductionPojo foundProduction = this.mongoCollection.find(
+        eq("_id", id.toString())
+    ).first();
     if (foundProduction == null) {
       throw new CouldNotFindProductionException();
     }
@@ -49,7 +50,7 @@ public final class MongoRepository implements Repository {
 
   @Override
   public void removeProductionById(UUID id) throws CouldNotRemoveProductionException {
-    DeleteResult result = this.mongoCollection.deleteOne(eq("_id", id));
+    DeleteResult result = this.mongoCollection.deleteOne(eq("_id", id.toString()));
     if (result.wasAcknowledged()) {
       return;
     }

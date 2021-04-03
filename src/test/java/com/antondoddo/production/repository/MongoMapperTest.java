@@ -35,7 +35,7 @@ public final class MongoMapperTest {
     List<String> expectedDirector = new ArrayList<>();
     expectedDirector.add(p.getDirection().getName());
     expectedDirector.add(p.getDirection().getSurname());
-    assertEquals(mongoProductionPojo.id, p.getId());
+    assertEquals(mongoProductionPojo.id, p.getId().toString());
     assertEquals(mongoProductionPojo.title, p.getTitle().getValue());
     assertEquals(mongoProductionPojo.description, p.getDescription().getValue());
     assertEquals(mongoProductionPojo.ageClassification, p.getAgeClassification().name());
@@ -47,7 +47,7 @@ public final class MongoMapperTest {
     assertArrayEquals(mongoProductionPojo.cast.toArray(), p.getCast().stream().map((Actor a) ->
         Arrays.asList(a.getName(), a.getSurname()))
         .collect(Collectors.toCollection(ArrayList::new)).toArray());
-    assertEquals(mongoProductionPojo.duration, p.getDuration().getFilmDuration().toMillis());
+    assertEquals(mongoProductionPojo.duration, p.getDuration().getTimeDuration().toMillis());
     assertEquals(mongoProductionPojo.releaseDate, p.getReleaseDate().getValue().toString());
   }
 
@@ -57,7 +57,7 @@ public final class MongoMapperTest {
     List<List<String>> cast = new ArrayList<>();
     cast.add(0, Arrays.asList("Tom", "Cruise"));
     cast.add(1, Arrays.asList("Brad", "Pitt"));
-    mongo1.id = UUID.randomUUID();
+    mongo1.id = UUID.randomUUID().toString();
     mongo1.title = "Ma che bella giornata";
     mongo1.description = "Il film è molto avvincente";
     mongo1.ageClassification = AgeClassification.SETTE.name();
@@ -75,7 +75,7 @@ public final class MongoMapperTest {
     cast2.add(0, Arrays.asList("Tom", "Hardy"));
     cast2.add(1, Arrays.asList("George", "Clooney"));
     MongoProductionPojo mongo2 = new MongoProductionPojo();
-    mongo2.id = UUID.randomUUID();
+    mongo2.id = UUID.randomUUID().toString();
     mongo2.title = "La guerra dei mondi";
     mongo2.description = "Il film è molto bello";
     mongo2.ageClassification = AgeClassification.QUATTORDICI.name();
@@ -105,7 +105,7 @@ public final class MongoMapperTest {
     MongoMapper mongoMapper = new MongoMapper();
     Production p = mongoMapper.fromMongoProductionPojo(mongo);
 
-    assertEquals(p.getId(), mongo.id);
+    assertEquals(p.getId().toString(), mongo.id);
     assertEquals(p.getTitle().getValue(), mongo.title);
     assertEquals(p.getDescription().getValue(), mongo.description);
     assertEquals(p.getAgeClassification().name(), mongo.ageClassification);
@@ -119,7 +119,7 @@ public final class MongoMapperTest {
         Arrays.asList(a.getName(), a.getSurname()))
         .collect(Collectors.toCollection(ArrayList::new))
         .toArray(), mongo.cast.toArray());
-    assertEquals(p.getDuration().getFilmDuration().toMillis(), mongo.duration);
+    assertEquals(p.getDuration().getTimeDuration().toMillis(), mongo.duration);
     assertEquals(p.getReleaseDate().getValue().toString(), mongo.releaseDate);
   }
 }

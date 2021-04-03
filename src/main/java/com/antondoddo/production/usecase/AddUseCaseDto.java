@@ -22,7 +22,7 @@ public final class AddUseCaseDto {
   private final ReleaseDate releaseDate;
   private final ArrayList<Genre> genres;
   private final ArrayList<Actor> cast;
-  private final Director filmDirector;
+  private final Director director;
   private final AgeClassification ageClassification;
   private final Episode episode;
   private final Season season;
@@ -39,7 +39,7 @@ public final class AddUseCaseDto {
     this.releaseDate = releaseDate;
     this.genres = genres;
     this.cast = cast;
-    this.filmDirector = filmDirector;
+    this.director = filmDirector;
     this.ageClassification = ageClassification;
     this.episode = episode;
     this.season = season;
@@ -74,7 +74,7 @@ public final class AddUseCaseDto {
   }
 
   public Director getDirector() {
-    return filmDirector;
+    return director;
   }
 
   public AgeClassification getAgeClassification() {

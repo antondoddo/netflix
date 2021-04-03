@@ -24,23 +24,23 @@ public final class Production {
   private final ReleaseDate releaseDate;
   private final ArrayList<Genre> genres;
   private final ArrayList<Actor> cast;
-  private final Director filmDirector;
+  private final Director director;
   private final AgeClassification ageClassification;
   private final Episode episode;
   private final Season season;
 
   private Production(
-          UUID id,
-          Title title,
-          Description description,
-          Duration duration,
-          ReleaseDate releaseDate,
-          ArrayList<Genre> genres,
-          ArrayList<Actor> cast,
-          Director filmDirector,
-          AgeClassification ageClassification,
-          Episode episode,
-          Season season
+      UUID id,
+      Title title,
+      Description description,
+      Duration duration,
+      ReleaseDate releaseDate,
+      ArrayList<Genre> genres,
+      ArrayList<Actor> cast,
+      Director filmDirector,
+      AgeClassification ageClassification,
+      Episode episode,
+      Season season
   ) {
     this.id = id;
     this.title = title;
@@ -49,63 +49,63 @@ public final class Production {
     this.releaseDate = releaseDate;
     this.genres = genres;
     this.cast = cast;
-    this.filmDirector = filmDirector;
+    this.director = filmDirector;
     this.ageClassification = ageClassification;
     this.episode = episode;
     this.season = season;
   }
 
   public static Production ofMovie(
-          UUID id,
-          Title title,
-          Description description,
-          Duration duration,
-          ReleaseDate releaseDate,
-          ArrayList<Genre> genres,
-          ArrayList<Actor> cast,
-          Director direction,
-          AgeClassification ageClassification
+      UUID id,
+      Title title,
+      Description description,
+      Duration duration,
+      ReleaseDate releaseDate,
+      ArrayList<Genre> genres,
+      ArrayList<Actor> cast,
+      Director direction,
+      AgeClassification ageClassification
   ) {
     return new Production(
-            id,
-            title,
-            description,
-            duration,
+        id,
+        title,
+        description,
+        duration,
         releaseDate,
-            genres,
-            cast,
-            direction,
-            ageClassification,
-            new NullEpisode(),
-            new NullSeason()
+        genres,
+        cast,
+        direction,
+        ageClassification,
+        new NullEpisode(),
+        new NullSeason()
     );
   }
 
   public static Production ofEpisode(
-          UUID id,
-          Title title,
-          Description description,
-          Duration duration,
-          ReleaseDate releaseDate,
-          ArrayList<Genre> genres,
-          ArrayList<Actor> cast,
-          Director direction,
-          AgeClassification ageClassification,
-          Episode episode,
-          Season season
+      UUID id,
+      Title title,
+      Description description,
+      Duration duration,
+      ReleaseDate releaseDate,
+      ArrayList<Genre> genres,
+      ArrayList<Actor> cast,
+      Director direction,
+      AgeClassification ageClassification,
+      Episode episode,
+      Season season
   ) {
     return new Production(
-            id,
-            title,
-            description,
-            duration,
+        id,
+        title,
+        description,
+        duration,
         releaseDate,
-            genres,
-            cast,
-            direction,
-            ageClassification,
-            episode,
-            season
+        genres,
+        cast,
+        direction,
+        ageClassification,
+        episode,
+        season
     );
   }
 
@@ -138,7 +138,7 @@ public final class Production {
   }
 
   public Director getDirection() {
-    return filmDirector;
+    return director;
   }
 
   public AgeClassification getAgeClassification() {

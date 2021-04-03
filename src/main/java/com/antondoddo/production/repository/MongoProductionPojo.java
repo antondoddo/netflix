@@ -10,7 +10,7 @@ import org.bson.codecs.pojo.annotations.BsonId;
 public final class MongoProductionPojo {
 
   @BsonId
-  public UUID id;
+  public String id;
   public String title;
   public String description;
   public long duration;
